@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "993449340609",
+    "project_id": "si-uni-lj-fe-tnuv-dezurka",
+    "storage_bucket": "si-uni-lj-fe-tnuv-dezurka.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993449340609:android:9d23a9f3a8dff496036e40",
+        "android_client_info": {
+          "package_name": "si.uni_lj.fe.tnuv.dezurka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993449340609-s0pi9hkoutsf4g9c0lesev3amtlfa1vu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqb_JHH5hrHKtfv2I9_M_4O4upBFmivU4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993449340609-s0pi9hkoutsf4g9c0lesev3amtlfa1vu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
