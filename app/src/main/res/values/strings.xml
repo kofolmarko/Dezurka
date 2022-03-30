@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Dezurka</string>
+    <string name="login_btn">Login</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="email_hint">E-mail</string>
 </resources>
