@@ -38,18 +38,30 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             //reload();
-            System.out.println("User is signed in");
+            Toast.makeText(LoginActivity.this,
+                    getResources().getString(R.string.signIn_successful_msg) + currentUser.getEmail(),
+                    Toast.LENGTH_SHORT).show();
         }
+
         registerBtn.setOnClickListener(v -> {
             EditText email = findViewById(R.id.email_input);
             EditText password = findViewById(R.id.password_input);
-            //Toast.makeText(getApplicationContext(), username.getText().toString() + ' ' + password.getText().toString(),
-            //        Toast.LENGTH_LONG).show();
+            if (email == null || email.length() == 0 || password == null || password.length() == 0) return;
             createAccount(
+                    email.getText().toString(),
+                    password.getText().toString()
+            );
+        });
+        loginBtn.setOnClickListener(v -> {
+            EditText email = findViewById(R.id.email_input);
+            EditText password = findViewById(R.id.password_input);
+            if (email == null || email.length() == 0 || password == null || password.length() == 0) return;
+            signIn(
                     email.getText().toString(),
                     password.getText().toString()
             );
@@ -62,10 +74,28 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
                         //updateUI(user);
-                        Toast.makeText(getApplicationContext(), "Register successful, login with your credentials.",
+                        Toast.makeText(LoginActivity.this,
+                                getResources().getString(R.string.register_successful_msg),
                                 Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getApplicationContext(), task.getException().getMessage(),
+                        Toast.makeText(LoginActivity.this, task.getException().getMessage(),
+                                Toast.LENGTH_SHORT).show();
+                        //updateUI(null);
+                    }
+                });
+    }
+
+    public void signIn(String email, String password) {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        // updateUI(user);
+                        Toast.makeText(LoginActivity.this,
+                                getResources().getString(R.string.signIn_successful_msg) + user.getEmail(),
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(LoginActivity.this, task.getException().getMessage(),
                                 Toast.LENGTH_SHORT).show();
                         //updateUI(null);
                     }
