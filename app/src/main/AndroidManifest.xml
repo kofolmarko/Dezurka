@@ -10,7 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dezurka">
         <activity
-            android:name=".LoginActivity"
+            android:name=".RegisterActivity"
+            android:parentActivityName=".SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,15 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--><activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity><-->
     </application>
 
 </manifest>

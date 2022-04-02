@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".SignInActivity">
 
     <EditText
         android:id="@+id/password_input"
@@ -59,7 +59,7 @@
         app:layout_constraintVertical_bias="0.828" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/dezurka_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
