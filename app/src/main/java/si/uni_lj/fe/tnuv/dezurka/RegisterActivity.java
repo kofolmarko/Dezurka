@@ -3,6 +3,7 @@ package si.uni_lj.fe.tnuv.dezurka;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
@@ -72,10 +73,10 @@ public class RegisterActivity extends AppCompatActivity {
                         user.updateProfile(profileUpdates)
                                 .addOnCompleteListener(task1 -> {
                                     if (task1.isSuccessful()) {
-                                        //updateUI(user);
                                         Toast.makeText(RegisterActivity.this,
                                                 getResources().getString(R.string.register_successful_msg),
                                                 Toast.LENGTH_SHORT).show();
+                                        loadDashboard();
                                     }
                                 });
                     } else {
@@ -84,5 +85,10 @@ public class RegisterActivity extends AppCompatActivity {
                         //updateUI(null);
                     }
                 });
+    }
+
+    private void loadDashboard() {
+        Intent intent = new Intent(this, DashboardActivity.class);
+        startActivity(intent);
     }
 }

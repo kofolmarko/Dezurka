@@ -35,7 +35,7 @@ public class SignInActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            //reload();
+            loadDashboard();
             Toast.makeText(SignInActivity.this,
                     getResources().getString(R.string.signIn_successful_msg) + currentUser.getEmail(),
                     Toast.LENGTH_SHORT).show();
@@ -61,15 +61,19 @@ public class SignInActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
-                        // updateUI(user);
                         Toast.makeText(SignInActivity.this,
                                 getResources().getString(R.string.signIn_successful_msg) + user.getEmail(),
                                 Toast.LENGTH_SHORT).show();
+                        loadDashboard();
                     } else {
                         Toast.makeText(SignInActivity.this, task.getException().getMessage(),
                                 Toast.LENGTH_SHORT).show();
-                        //updateUI(null);
                     }
                 });
+    }
+
+    private void loadDashboard() {
+        Intent intent = new Intent(this, DashboardActivity.class);
+        startActivity(intent);
     }
 }

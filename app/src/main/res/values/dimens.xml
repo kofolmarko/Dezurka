@@ -1,0 +1,4 @@
+<resources>
+        <dimen name="hamburger_menu_margin">40dp</dimen>
+        <dimen name="hamburger_menu_dim">56dp</dimen>
+    </resources>

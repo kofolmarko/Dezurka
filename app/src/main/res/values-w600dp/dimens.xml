@@ -1,0 +1,3 @@
+<resources>
+        <dimen name="hamburger_menu_margin">48dp</dimen>
+    </resources>
