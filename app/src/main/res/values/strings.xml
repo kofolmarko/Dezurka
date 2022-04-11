@@ -11,6 +11,7 @@
     <string name="register_title">Create account</string>
     <string name="passwords_do_not_match_msg">Passwords do not match</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -19,4 +20,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="my_dates_btn">Moji termini</string>
+    <string name="available_dates_btn">Razpis terminov</string>
+    <string name="trades_btn">Menjave / Oddaje</string>
 </resources>
