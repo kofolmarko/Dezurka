@@ -1,7 +1,7 @@
 <resources>
 
-    <style name="Widget.Theme.Dezurka.MyView" parent="">
-        <item name="android:background">@color/gray_600</item>
-        <item name="exampleColor">@color/light_blue_600</item>
+    <style name="Widget.Theme.Dezurka.MyView" parent="Theme.Dezurka">
+        <item name="android:background">@drawable/dashboard_btn</item>
+        <item name="fontFamily">@font/creatodisplay_regular</item>
     </style>
 </resources>

@@ -4,41 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DashboardActivity"
-    android:theme="@style/Theme.Dezurka">
+    tools:context=".DashboardActivity">
 
-    <Button
+    <include
         android:id="@+id/my_dates_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/my_dates_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
+        layout="@layout/dashboard_btn"
+        android:layout_width="@dimen/dashboard_btn_width"
+        android:layout_height="@dimen/dashboard_btn_height"
+        app:layout_constraintBottom_toTopOf="@id/available_dates_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.348" />
-
-    <Button
-        android:id="@+id/available_dates_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/available_dates_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <include
+        android:id="@+id/available_dates_btn"
+        layout="@layout/dashboard_btn"
+        android:layout_width="@dimen/dashboard_btn_width"
+        android:layout_height="@dimen/dashboard_btn_height"
+        app:layout_constraintBottom_toTopOf="@id/trades_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_dates_btn" />
+
+    <include
         android:id="@+id/trades_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/trades_btn"
+        layout="@layout/dashboard_btn"
+        android:layout_width="@dimen/dashboard_btn_width"
+        android:layout_height="@dimen/dashboard_btn_height"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.658" />
+        app:layout_constraintTop_toBottomOf="@+id/available_dates_btn" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/hamburger_menu"

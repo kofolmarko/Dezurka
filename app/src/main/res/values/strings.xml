@@ -23,4 +23,6 @@
     <string name="my_dates_btn">Moji termini</string>
     <string name="available_dates_btn">Razpis terminov</string>
     <string name="trades_btn">Menjave / Oddaje</string>
+    <string name="my_dates_text2_p1">"Naslednji termin čez "</string>
+    <string name="my_dates_text2_p2">" dni"</string>
 </resources>

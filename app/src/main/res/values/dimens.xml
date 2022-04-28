@@ -3,4 +3,7 @@
         <dimen name="hamburger_menu_dim">56dp</dimen>
     <dimen name="dashboard_btn_width">388dp</dimen>
     <dimen name="dashboard_btn_height">130dp</dimen>
+    <dimen name="dashboard_btn_corner_radius">10sp</dimen>
+    <dimen name="dashboard_btn_text_1">25dp</dimen>
+    <dimen name="dashboard_btn_text_2">15dp</dimen>
 </resources>
