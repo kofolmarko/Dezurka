@@ -1,9 +1,10 @@
 <resources>
         <dimen name="hamburger_menu_margin">40dp</dimen>
-        <dimen name="hamburger_menu_dim">56dp</dimen>
+        <dimen name="hamburger_menu_dim">80dp</dimen>
     <dimen name="dashboard_btn_width">388dp</dimen>
     <dimen name="dashboard_btn_height">130dp</dimen>
     <dimen name="dashboard_btn_corner_radius">10sp</dimen>
     <dimen name="dashboard_btn_text_1">25dp</dimen>
     <dimen name="dashboard_btn_text_2">15dp</dimen>
+    <dimen name="dashboard_btn_group_height">460dp</dimen>
 </resources>

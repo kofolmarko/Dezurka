@@ -25,4 +25,8 @@
     <string name="trades_btn">Menjave / Oddaje</string>
     <string name="my_dates_text2_p1">"Naslednji termin čez "</string>
     <string name="my_dates_text2_p2">" dni"</string>
+    <string name="available_dates_text2_p1">"Naslednji razpis čez "</string>
+    <string name="available_dates_text2_p2">" dni"</string>
+    <string name="trades_text2">Menjaj ali oddaj termin</string>
+    <string name="trades_text3">" aktivnih ponudb"</string>
 </resources>

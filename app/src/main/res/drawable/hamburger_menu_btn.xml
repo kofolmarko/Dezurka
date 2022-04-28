@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:shape="oval" xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="@dimen/dashboard_btn_corner_radius"/>
+    <gradient
+        android:angle="315"
+        android:startColor="@color/dezurka_red"
+        android:endColor="@color/dezurka_orange"
+        android:type="linear" />
+</shape>
