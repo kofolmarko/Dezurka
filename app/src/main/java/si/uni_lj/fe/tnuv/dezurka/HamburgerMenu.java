@@ -1,5 +1,6 @@
 package si.uni_lj.fe.tnuv.dezurka;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -11,9 +12,9 @@ public class HamburgerMenu {
         ConstraintLayout hamburgerBtn = view.findViewById(R.id.hamburger_menu_btn);
         ConstraintLayout hamburgerMenuActive = view.findViewById(R.id.hamburger_menu_overlay);
         ConstraintLayout hamburgerMenuBgBlur = view.findViewById(R.id.hamburger_menu_background_blur_element);
+        ImageView hamburgerIcon = hamburgerBtn.findViewById(R.id.hamburger_menu_btn_icon);
 
         hamburgerBtn.setOnClickListener(view1 -> {
-            ImageView hamburgerIcon = hamburgerBtn.findViewById(R.id.hamburger_menu_btn_icon);
             if (hamburgerMenuActive.getVisibility() == View.GONE) {
                 hamburgerMenuActive.setVisibility(View.VISIBLE);
                 hamburgerMenuBgBlur.setVisibility(View.VISIBLE);
@@ -39,5 +40,37 @@ public class HamburgerMenu {
         availableDatesHamburgerIcon.setImageResource(R.drawable.hamburger_availabledates_icon);
         tradesHamburgerIcon.setImageResource(R.drawable.hamburger_trades_icon);
         settingsHamburgerIcon.setImageResource(R.drawable.hamburger_settings_icon);
+
+        myDatesHamburgerBtn.setOnClickListener(v -> {
+            hamburgerMenuActive.setVisibility(View.GONE);
+            hamburgerMenuBgBlur.setVisibility(View.GONE);
+            hamburgerIcon.setImageResource(R.drawable.hamburger_menu_btn_icon);
+            Intent i = new Intent(view, MyDatesActivity.class);
+            view.startActivity(i);
+        });
+
+        availableDatesHamburgerBtn.setOnClickListener(v -> {
+            hamburgerMenuActive.setVisibility(View.GONE);
+            hamburgerMenuBgBlur.setVisibility(View.GONE);
+            hamburgerIcon.setImageResource(R.drawable.hamburger_menu_btn_icon);
+            Intent i = new Intent(view, AvailableDatesActivity.class);
+            view.startActivity(i);
+        });
+
+        tradesHamburgerBtn.setOnClickListener(v -> {
+            hamburgerMenuActive.setVisibility(View.GONE);
+            hamburgerMenuBgBlur.setVisibility(View.GONE);
+            hamburgerIcon.setImageResource(R.drawable.hamburger_menu_btn_icon);
+            Intent i = new Intent(view, TradesActivity.class);
+            view.startActivity(i);
+        });
+
+        settingsHamburgerBtn.setOnClickListener(v -> {
+            hamburgerMenuActive.setVisibility(View.GONE);
+            hamburgerMenuBgBlur.setVisibility(View.GONE);
+            hamburgerIcon.setImageResource(R.drawable.hamburger_menu_btn_icon);
+            Intent i = new Intent(view, SettingsActivity.class);
+            view.startActivity(i);
+        });
     }
 }

@@ -33,4 +33,5 @@
     <string name="exit_popup_dialog_confirm">Da</string>
     <string name="exit_popup_dialog_cancel">Prekliči</string>
     <string name="toolbartext">ToolbarText</string>
+    <string name="settings">Nastavitve</string>
 </resources>
