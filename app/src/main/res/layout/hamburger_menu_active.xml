@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@null"
+    android:backgroundTint="@null">
+
+    <include
+        android:id="@+id/hamburger_menu_btn_settings"
+        layout="@layout/hamburger_menu_btn"
+        android:layout_width="@dimen/hamburger_menu_dim"
+        android:layout_height="@dimen/hamburger_menu_dim"
+        android:layout_marginEnd="@dimen/hamburger_menu_margin"
+        android:layout_marginBottom="@dimen/hamburger_menu_between_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hamburger_menu_btn_trades" />
+
+    <include
+        android:id="@+id/hamburger_menu_btn_trades"
+        layout="@layout/hamburger_menu_btn"
+        android:layout_width="@dimen/hamburger_menu_dim"
+        android:layout_height="@dimen/hamburger_menu_dim"
+        android:layout_marginBottom="@dimen/hamburger_menu_between_margin"
+        app:layout_constraintBottom_toTopOf="@+id/hamburger_menu_btn_settings"
+        app:layout_constraintEnd_toEndOf="@+id/hamburger_menu_btn_settings"
+        app:layout_constraintStart_toStartOf="@+id/hamburger_menu_btn_settings"
+        app:layout_constraintTop_toBottomOf="@id/hamburger_menu_btn_available_dates" />
+
+    <include
+        android:id="@+id/hamburger_menu_btn_available_dates"
+        layout="@layout/hamburger_menu_btn"
+        android:layout_width="@dimen/hamburger_menu_dim"
+        android:layout_height="@dimen/hamburger_menu_dim"
+        android:layout_marginBottom="@dimen/hamburger_menu_between_margin"
+        app:layout_constraintBottom_toTopOf="@+id/hamburger_menu_btn_trades"
+        app:layout_constraintEnd_toEndOf="@+id/hamburger_menu_btn_trades"
+        app:layout_constraintStart_toStartOf="@+id/hamburger_menu_btn_trades"
+        app:layout_constraintTop_toBottomOf="@id/hamburger_menu_btn_my_dates" />
+
+    <include
+        android:id="@+id/hamburger_menu_btn_my_dates"
+        layout="@layout/hamburger_menu_btn"
+        android:layout_width="@dimen/hamburger_menu_dim"
+        android:layout_height="@dimen/hamburger_menu_dim"
+        android:layout_marginBottom="@dimen/hamburger_menu_between_margin"
+        app:layout_constraintBottom_toTopOf="@+id/hamburger_menu_btn_available_dates"
+        app:layout_constraintEnd_toEndOf="@+id/hamburger_menu_btn_available_dates"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/hamburger_menu_btn_available_dates"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

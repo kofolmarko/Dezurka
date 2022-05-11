@@ -6,10 +6,13 @@
         <entry key="..\:/Users/kofol/.gradle/caches/transforms-3/8e614f96138e66719c6e365d9402762c/transformed/material-1.5.0/res/layout/text_view_with_line_height_from_appearance.xml" value="0.182518115942029" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.307" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/drawable/dashboard_btn.xml" value="0.143" />
+        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/drawable/hamburger_menu_backgorund_blur.xml" value="0.1955" />
+        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/drawable/hamburger_menu_background.xml" value="0.134" />
+        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/drawable/hamburger_menu_background_blur.xml" value="0.1955" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/drawable/hamburger_menu_btn.xml" value="0.19" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1235" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_available_dates.xml" value="0.1" />
-        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_dashboard.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_main.xml" value="0.13134057971014493" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_my_dates.xml" value="0.1" />
@@ -19,9 +22,13 @@
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/dasboard_btn.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/dasboard_btn_group.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/dashboard_btn.xml" value="0.5" />
+        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/dashboard_btn_group.xml" value="0.27219202898550726" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/fragment_first.xml" value="0.16847826086956522" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/fragment_second.xml" value="0.16847826086956522" />
-        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/hamburger_menu_btn.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/hamburger_menu_active.xml" value="0.25" />
+        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/hamburger_menu_background_blur.xml" value="0.2713541666666667" />
+        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/hamburger_menu_background_blur_solid.xml" value="0.2713541666666667" />
+        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/hamburger_menu_btn.xml" value="0.14" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/sample_dashboard_btn.xml" value="0.16145833333333334" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/sample_dashboard_button.xml" value="0.1" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />

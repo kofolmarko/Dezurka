@@ -7,4 +7,5 @@
     <dimen name="dashboard_btn_text_1">25dp</dimen>
     <dimen name="dashboard_btn_text_2">15dp</dimen>
     <dimen name="dashboard_btn_group_height">460dp</dimen>
+    <dimen name="hamburger_menu_between_margin">21dp</dimen>
 </resources>

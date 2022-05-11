@@ -29,4 +29,7 @@
     <string name="available_dates_text2_p2">" dni"</string>
     <string name="trades_text2">Menjaj ali oddaj termin</string>
     <string name="trades_text3">" aktivnih ponudb"</string>
+    <string name="exit_popup_dialog">Želite zapustiti aplikacijo?</string>
+    <string name="exit_popup_dialog_confirm">Da</string>
+    <string name="exit_popup_dialog_cancel">Prekliči</string>
 </resources>
