@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".AvailableDatesActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
+    <include
+        layout="@layout/hamburger_layout"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

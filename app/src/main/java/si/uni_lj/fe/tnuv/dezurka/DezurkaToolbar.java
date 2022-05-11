@@ -15,5 +15,9 @@ public class DezurkaToolbar {
         }
         TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
         toolbarTitle.setText(tbText);
+        ImageButton backBtn = toolbar.findViewById(R.id.back_btn);
+        backBtn.setOnClickListener(view1 -> {
+            view.finish();
+        });
     }
 }

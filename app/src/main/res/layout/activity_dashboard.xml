@@ -7,6 +7,10 @@
     tools:context=".DashboardActivity" >
 
     <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
+    <include
         android:id="@+id/dashboard_btn_button_group"
         layout="@layout/dashboard_btn_group"
         android:layout_width="@dimen/dashboard_btn_width"
@@ -17,45 +21,6 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <include
-        android:id="@+id/hamburger_menu_background_blur_element"
-        layout="@layout/hamburger_menu_background_blur"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"/>
-
-    <include
-        android:id="@+id/hamburger_menu_btn"
-        layout="@layout/hamburger_menu_btn"
-        android:layout_width="@dimen/hamburger_menu_dim"
-        android:layout_height="@dimen/hamburger_menu_dim"
-        android:layout_marginEnd="@dimen/hamburger_menu_margin"
-        android:layout_marginBottom="@dimen/hamburger_menu_margin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1" />
-
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
-
-    <include
-        android:id="@+id/hamburger_menu_overlay"
-        layout="@layout/hamburger_menu_active"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/hamburger_menu_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        layout="@layout/hamburger_layout"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

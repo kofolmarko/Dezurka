@@ -1,6 +1,7 @@
 package si.uni_lj.fe.tnuv.dezurka;
 
 import static si.uni_lj.fe.tnuv.dezurka.DezurkaToolbar.setupToolbar;
+import static si.uni_lj.fe.tnuv.dezurka.HamburgerMenu.setupHamburgerMenu;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
@@ -36,9 +37,6 @@ public class DashboardActivity extends AppCompatActivity {
     private ConstraintLayout myDatesBtn;
     private ConstraintLayout availableDatesBtn;
     private ConstraintLayout tradesBtn;
-    private ConstraintLayout hamburgerBtn;
-    private ConstraintLayout hamburgerMenuActive;
-    private ConstraintLayout hamburgerMenuBgBlur;
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
@@ -49,14 +47,11 @@ public class DashboardActivity extends AppCompatActivity {
         myDatesBtn = findViewById(R.id.my_dates_btn);
         availableDatesBtn = findViewById(R.id.available_dates_btn);
         tradesBtn = findViewById(R.id.trades_btn);
-        hamburgerBtn = findViewById(R.id.hamburger_menu_btn);
-        hamburgerMenuActive = findViewById(R.id.hamburger_menu_overlay);
-        hamburgerMenuBgBlur = findViewById(R.id.hamburger_menu_background_blur_element);
 
         setButtonText();
         setOnClickListeners();
         setIcons();
-        setHamburgerMenuIcons();
+        setupHamburgerMenu(this);
         setupToolbar("", this);
     }
 
@@ -84,39 +79,6 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-        hamburgerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ImageView hamburgerIcon = hamburgerBtn.findViewById(R.id.hamburger_menu_btn_icon);
-                if (hamburgerMenuActive.getVisibility() == View.GONE) {
-                    hamburgerMenuActive.setVisibility(View.VISIBLE);
-                    hamburgerMenuBgBlur.setVisibility(View.VISIBLE);
-                    hamburgerIcon.setImageResource(R.drawable.hamburger_close_icon);
-                } else {
-                    hamburgerMenuActive.setVisibility(View.GONE);
-                    hamburgerMenuBgBlur.setVisibility(View.GONE);
-                    hamburgerIcon.setImageResource(R.drawable.hamburger_menu_btn_icon);
-                }
-            }
-        });
-    }
-
-    private void setHamburgerMenuIcons() {
-        ConstraintLayout myDatesHamburgerBtn = hamburgerMenuActive.findViewById(R.id.hamburger_menu_btn_my_dates);
-        ConstraintLayout availableDatesHamburgerBtn = hamburgerMenuActive.findViewById(R.id.hamburger_menu_btn_available_dates);
-        ConstraintLayout tradesHamburgerBtn = hamburgerMenuActive.findViewById(R.id.hamburger_menu_btn_trades);
-        ConstraintLayout settingsHamburgerBtn = hamburgerMenuActive.findViewById(R.id.hamburger_menu_btn_settings);
-
-        ImageView myDatesHamburgerIcon = myDatesHamburgerBtn.findViewById(R.id.hamburger_menu_btn_icon);
-        ImageView availableDatesHamburgerIcon = availableDatesHamburgerBtn.findViewById(R.id.hamburger_menu_btn_icon);
-        ImageView tradesHamburgerIcon = tradesHamburgerBtn.findViewById(R.id.hamburger_menu_btn_icon);
-        ImageView settingsHamburgerIcon = settingsHamburgerBtn.findViewById(R.id.hamburger_menu_btn_icon);
-
-        myDatesHamburgerIcon.setImageResource(R.drawable.hamburger_mydates_icon);
-        availableDatesHamburgerIcon.setImageResource(R.drawable.hamburger_availabledates_icon);
-        tradesHamburgerIcon.setImageResource(R.drawable.hamburger_trades_icon);
-        settingsHamburgerIcon.setImageResource(R.drawable.hamburger_settings_icon);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
