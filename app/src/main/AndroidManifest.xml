@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dezurka">
         <activity
-            android:name=".DetailsActivity"
+            android:name=".MyDateDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".SettingsHelpActivity"

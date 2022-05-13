@@ -3,29 +3,19 @@ package si.uni_lj.fe.tnuv.dezurka;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.animation.LayoutTransition;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.json.JSONArray;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+
 import static si.uni_lj.fe.tnuv.dezurka.DezurkaToolbar.setupToolbar;
 import static si.uni_lj.fe.tnuv.dezurka.HamburgerMenu.setupHamburgerMenu;
 
@@ -100,7 +90,7 @@ public class MyDatesActivity extends AppCompatActivity {
         myDatesList.setOnItemClickListener(((adapterView, view, i, l) -> {
             Date selectedDate = arrayOfDates.get(i);
 
-            Intent detailsIntent = new Intent(this, DetailsActivity.class);
+            Intent detailsIntent = new Intent(this, MyDateDetailsActivity.class);
             detailsIntent.putExtra(DETAILSTIME, selectedDate.time);
             detailsIntent.putExtra(DETAILSDATE, selectedDate.date);
             detailsIntent.putExtra(DETAILSPERSON, selectedDate.person);

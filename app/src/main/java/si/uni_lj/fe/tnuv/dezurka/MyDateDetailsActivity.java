@@ -23,7 +23,7 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.ArrayList;
 
-public class DetailsActivity extends AppCompatActivity {
+public class MyDateDetailsActivity extends AppCompatActivity {
 
     ArrayList<MyDatesActivity.Date> arrayOfTrades = new ArrayList<MyDatesActivity.Date>();
 
@@ -62,8 +62,6 @@ public class DetailsActivity extends AppCompatActivity {
 
     public static class TradeDialog extends DialogFragment {
         ArrayList<MyDatesActivity.Date> arrayOfTrades = new ArrayList<MyDatesActivity.Date>();
-
-
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {

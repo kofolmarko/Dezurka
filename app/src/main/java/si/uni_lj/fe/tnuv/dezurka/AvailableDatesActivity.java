@@ -5,10 +5,22 @@ import static si.uni_lj.fe.tnuv.dezurka.HamburgerMenu.setupHamburgerMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.DialogFragment;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Html;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class AvailableDatesActivity extends AppCompatActivity {
 
@@ -40,6 +52,7 @@ public class AvailableDatesActivity extends AppCompatActivity {
 
         setupHamburgerMenu(this);
         setupToolbar(getResources().getString(R.string.available_dates_btn), this);
+
     }
 
     private void setText() {
@@ -55,6 +68,8 @@ public class AvailableDatesActivity extends AppCompatActivity {
 
     private void setOnclickListeners() {
         reserveBtn1.setOnClickListener(view -> {
+            DialogFragment reserveDialog = new ReserveDialog();
+            reserveDialog.show(getSupportFragmentManager(), "Rezerviraj termin");
             reserveBtn1.setEnabled(false);
             reserveBtn1.setAlpha(0.5f);
         });
@@ -71,4 +86,17 @@ public class AvailableDatesActivity extends AppCompatActivity {
             reserveBtn4.setAlpha(0.5f);
         });
     }
+
+    public static class ReserveDialog extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+            builder.setTitle(Html.fromHtml("<font color='#FFFFFF'>Rezervirali boste termin</font>"))
+                    .setView(R.layout.reserve_dialog);
+
+            return builder.create();
+        }
+    }
+
 }
