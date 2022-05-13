@@ -38,6 +38,8 @@ public class DashboardActivity extends AppCompatActivity {
     private ConstraintLayout availableDatesBtn;
     private ConstraintLayout tradesBtn;
 
+    public static final String MYNEXTDATE = "date";
+
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,10 @@ public class DashboardActivity extends AppCompatActivity {
     private void setOnClickListeners() {
         myDatesBtn.setOnClickListener(view -> {
             Intent i = new Intent(DashboardActivity.this, MyDatesActivity.class);
+
+            String[] text = generateMyDatesText();
+            i.putExtra(MYNEXTDATE, text[1]);
+
             startActivity(i);
         });
 

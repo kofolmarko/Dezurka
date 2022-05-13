@@ -35,7 +35,6 @@ public class AvailableDatesActivity extends AppCompatActivity {
         filter3 = findViewById(R.id.filter_3);
         filter4 = findViewById(R.id.filter_4);
 
-
         setText();
         setOnclickListeners();
 
