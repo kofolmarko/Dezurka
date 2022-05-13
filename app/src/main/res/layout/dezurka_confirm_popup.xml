@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="354dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/creatodisplay_light"
+            android:gravity="center_horizontal"
+            android:text="Popup text"
+            android:textColor="@color/dezurka_white"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.022" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/creatodisplay_regular"
+                android:text="📅 26. 12. 2021"
+                android:textColor="@color/dezurka_white"
+                android:textSize="30dp"
+                tools:layout_editor_absoluteX="77dp"
+                tools:layout_editor_absoluteY="259dp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/creatodisplay_regular"
+                android:text="⌚ 00h - 06h"
+                android:textColor="@color/dezurka_white"
+                android:textSize="30dp"
+                tools:layout_editor_absoluteX="78dp"
+                tools:layout_editor_absoluteY="304dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/creatodisplay_thin"
+                android:text="🏠 Dom 5, Rožna Dolina"
+                android:textColor="@color/dezurka_white"
+                android:textSize="22dp"
+                tools:layout_editor_absoluteX="78dp"
+                tools:layout_editor_absoluteY="352dp" />
+
+        <include
+            android:id="@+id/cancel_btn"
+            layout="@layout/dezurka_btn"
+            android:layout_width="@dimen/dezurka_btn_width"
+            android:layout_height="@dimen/dezurka_btn_height"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="664dp" />
+
+        <include
+            android:id="@+id/confirm_btn"
+            layout="@layout/dezurka_btn"
+            android:layout_width="@dimen/dezurka_btn_width"
+            android:layout_height="@dimen/dezurka_btn_height"
+            tools:layout_editor_absoluteX="190dp"
+            tools:layout_editor_absoluteY="664dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

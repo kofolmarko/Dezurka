@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity">
+    tools:context=".SettingsProfileActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -12,15 +12,5 @@
 
     <include
         layout="@layout/hamburger_layout"/>
-
-    <include
-        android:id="@+id/btn_group"
-        layout="@layout/settings_btn_group"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,4 +13,5 @@
     <dimen name="dezurka_btn_height">51dp</dimen>
     <dimen name="dezurka_btn_width">148dp</dimen>
     <dimen name="card_view_width">388dp</dimen>
+    <dimen name="settings_btn_height">87dp</dimen>
 </resources>

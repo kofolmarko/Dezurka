@@ -72,7 +72,6 @@ public class DashboardActivity extends AppCompatActivity {
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.Q)
     private void setIcons() {
         ImageView myDatesIcon = myDatesBtn.findViewById(R.id.dashboard_btn_icon);
         ImageView availableDatesIcon = availableDatesBtn.findViewById(R.id.dashboard_btn_icon);
