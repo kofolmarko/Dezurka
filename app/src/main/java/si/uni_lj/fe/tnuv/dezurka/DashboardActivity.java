@@ -56,28 +56,19 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void setOnClickListeners() {
-        myDatesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(DashboardActivity.this, MyDatesActivity.class);
-                startActivity(i);
-            }
+        myDatesBtn.setOnClickListener(view -> {
+            Intent i = new Intent(DashboardActivity.this, MyDatesActivity.class);
+            startActivity(i);
         });
 
-        availableDatesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(DashboardActivity.this, AvailableDatesActivity.class);
-                startActivity(i);
-            }
+        availableDatesBtn.setOnClickListener(view -> {
+            Intent i = new Intent(DashboardActivity.this, AvailableDatesActivity.class);
+            startActivity(i);
         });
 
-        tradesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(DashboardActivity.this, TradesActivity.class);
-                startActivity(i);
-            }
+        tradesBtn.setOnClickListener(view -> {
+            Intent i = new Intent(DashboardActivity.this, TradesActivity.class);
+            startActivity(i);
         });
     }
 

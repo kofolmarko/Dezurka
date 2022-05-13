@@ -34,4 +34,8 @@
     <string name="exit_popup_dialog_cancel">Prekliči</string>
     <string name="toolbartext">ToolbarText</string>
     <string name="settings">Nastavitve</string>
+    <string name="hours_filter_1">00h - 06h</string>
+    <string name="hours_filter_2">06h - 12h</string>
+    <string name="hours_filter_3">12h - 18h</string>
+    <string name="hours_filter_4">18h - 24h</string>
 </resources>

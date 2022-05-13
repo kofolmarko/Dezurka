@@ -8,9 +8,278 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        layout="@layout/toolbar" />
 
     <include
-        layout="@layout/hamburger_layout"/>
+        android:id="@+id/include"
+        layout="@layout/hamburger_layout"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="-16dp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="@dimen/card_view_width"
+        android:layout_height="184dp"
+        android:background="@color/dezurka_blue"
+        android:elevation="@dimen/cardview_default_elevation"
+        app:cardCornerRadius="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginTop="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/preostale_rezervacije"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:background="@null"
+                android:fontFamily="@font/creatodisplay_light"
+                android:text="Preostale rezervacije: "
+                android:textColor="@color/dezurka_white"
+                android:textSize="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.401"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/filter_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/custom_checkbox"
+                android:fontFamily="@font/creatodisplay_thin"
+                android:padding="7dp"
+                android:text="@string/hours_filter_2"
+                android:textColor="@color/dezurka_white"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.803"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.685" />
+
+            <CheckBox
+                android:id="@+id/filter_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/custom_checkbox"
+                android:fontFamily="@font/creatodisplay_thin"
+                android:padding="7dp"
+                android:text="@string/hours_filter_3"
+                android:textColor="@color/dezurka_white"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.222"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.959" />
+
+            <CheckBox
+                android:id="@+id/filter_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/custom_checkbox"
+                android:fontFamily="@font/creatodisplay_thin"
+                android:padding="7dp"
+                android:text="@string/hours_filter_4"
+                android:textColor="@color/dezurka_white"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.803"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.951" />
+
+            <TextView
+                android:id="@+id/filtriraj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:fontFamily="@font/creatodisplay_light"
+                android:text="Filtriraj po terminu"
+                android:textColor="@color/dezurka_white"
+                android:textSize="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.308"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/preostale_rezervacije" />
+
+            <TextView
+                android:id="@+id/available_dates_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/creatodisplay_bold"
+                android:text="3"
+                android:textColor="@color/dezurka_white"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toTopOf="@+id/filtriraj"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/preostale_rezervacije"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.571" />
+
+            <CheckBox
+                android:id="@+id/filter_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/custom_checkbox"
+                android:fontFamily="@font/creatodisplay_thin"
+                android:padding="7dp"
+                android:text="@string/hours_filter_1"
+                android:textColor="@color/dezurka_white"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.235"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.685" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/dezurka_blue"
+        android:elevation="@dimen/cardview_default_elevation"
+        app:cardCornerRadius="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="@+id/include"
+        app:layout_constraintEnd_toEndOf="@+id/cardView3"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="@+id/cardView3"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="calendar" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="@dimen/card_view_width"
+        android:layout_height="183dp"
+        android:background="@color/dezurka_blue"
+        android:elevation="@dimen/cardview_default_elevation"
+        app:cardCornerRadius="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cardView2"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="@+id/cardView2"
+        app:layout_constraintTop_toBottomOf="@id/cardView2"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginTop="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/creatodisplay_light"
+                android:text="Rezerviraj termin "
+                android:textColor="@color/dezurka_white"
+                android:textSize="23dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.254"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.111" />
+
+            <TextView
+                android:id="@+id/current_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/creatodisplay_light"
+                android:text="15. 5. 2022"
+                android:textColor="@color/dezurka_white"
+                android:textSize="23dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.111" />
+
+            <include
+                android:id="@+id/reserve_btn_1"
+                layout="@layout/dezurka_btn"
+                android:layout_width="@dimen/dezurka_btn_width"
+                android:layout_height="@dimen/dezurka_btn_height"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.416" />
+
+            <include
+                android:id="@+id/reserve_btn_2"
+                layout="@layout/dezurka_btn"
+                android:layout_width="@dimen/dezurka_btn_width"
+                android:layout_height="@dimen/dezurka_btn_height"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.84"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.416" />
+
+            <include
+                android:id="@+id/reserve_btn_3"
+                layout="@layout/dezurka_btn"
+                android:layout_width="@dimen/dezurka_btn_width"
+                android:layout_height="@dimen/dezurka_btn_height"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.908" />
+
+            <include
+                android:id="@+id/reserve_btn_4"
+                layout="@layout/dezurka_btn"
+                android:layout_width="@dimen/dezurka_btn_width"
+                android:layout_height="@dimen/dezurka_btn_height"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.84"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.908" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
