@@ -30,7 +30,7 @@
       app:layout_constraintVertical_bias="0.16000003" />
 
   <LinearLayout
-      android:id="@+id/linearLayout"
+      android:id="@+id/btn_add_trade"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
@@ -52,7 +52,6 @@
         android:textSize="24sp" />
 
     <ImageView
-        android:id="@+id/btn_add_trade"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
