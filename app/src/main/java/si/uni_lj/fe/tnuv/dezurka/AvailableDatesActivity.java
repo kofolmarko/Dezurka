@@ -33,6 +33,16 @@ public class AvailableDatesActivity extends AppCompatActivity {
     private CheckBox filter3;
     private CheckBox filter4;
 
+    private ConstraintLayout cancelBtn;
+    private ConstraintLayout confirmBtn;
+    private TextView tvCancel;
+    private TextView tvConfirm;
+
+    private TextView tvReserveDate;
+    private TextView tvReserveTime;
+    private TextView tvReserveHome;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +78,7 @@ public class AvailableDatesActivity extends AppCompatActivity {
 
     private void setOnclickListeners() {
         reserveBtn1.setOnClickListener(view -> {
-            DialogFragment reserveDialog = new ReserveDialog();
-            reserveDialog.show(getSupportFragmentManager(), "Rezerviraj termin");
+            openDialog();
             reserveBtn1.setEnabled(false);
             reserveBtn1.setAlpha(0.5f);
         });
@@ -87,16 +96,32 @@ public class AvailableDatesActivity extends AppCompatActivity {
         });
     }
 
-    public static class ReserveDialog extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    private void openDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View v = inflater.inflate(R.layout.reserve_dialog, null);
 
-            builder.setTitle(Html.fromHtml("<font color='#FFFFFF'>Rezervirali boste termin</font>"))
-                    .setView(R.layout.reserve_dialog);
+        builder.setView(v)
+                .setTitle(Html.fromHtml("<font color='#FFFFFF'>Rezervirali boste termin</font>"));
 
-            return builder.create();
-        }
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        tvReserveDate = v.findViewById(R.id.reserve_date);
+        tvReserveTime = v.findViewById(R.id.reserve_time);
+        tvReserveHome = v.findViewById(R.id.reserve_home);
+
+        tvReserveDate.setText("Rezerviran datum");
+        tvReserveTime.setText("Rezerviran čas");
+        tvReserveHome.setText("Rezerviran dom");
+
+        cancelBtn = v.findViewById(R.id.trade_cancel);
+        confirmBtn = v.findViewById(R.id.trade_confirm);
+        tvCancel = cancelBtn.findViewById(R.id.text);
+        tvConfirm = confirmBtn.findViewById(R.id.text);
+
+        tvCancel.setText("Prekliči");
+        tvConfirm.setText("Potrdi");
     }
 
 }

@@ -5,10 +5,8 @@ import static si.uni_lj.fe.tnuv.dezurka.HamburgerMenu.setupHamburgerMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.DialogFragment;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Html;
@@ -16,8 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,6 +24,27 @@ public class TradesActivity extends AppCompatActivity {
 
     private ConstraintLayout filterBtn;
     private ListView availableTradesList;
+
+    private ConstraintLayout tradeTypeBtn;
+    private ConstraintLayout sellTypeBtn;
+    private ConstraintLayout h00btn;
+    private ConstraintLayout h06btn;
+    private ConstraintLayout h12btn;
+    private ConstraintLayout h18btn;
+    private ConstraintLayout cancelBtn;
+    private ConstraintLayout confirmBtn;
+
+    private TextView tvTradeType;
+    private TextView tvSellType;
+    private TextView tvh00;
+    private TextView tvh06;
+    private TextView tvh12;
+    private TextView tvh18;
+    private TextView tvCancel;
+    private TextView tvConfirm;
+
+    private Spinner groupSp;
+    private Spinner homeSp;
 
     ArrayList<MyDatesActivity.Date> arrayOfDates = new ArrayList<MyDatesActivity.Date>();
 
@@ -43,10 +62,9 @@ public class TradesActivity extends AppCompatActivity {
 
         showAvailableTrades();
 
-        ConstraintLayout addTradeBtn = findViewById(R.id.btn_filter);
-        addTradeBtn.setOnClickListener(view -> {
-            DialogFragment filterDialog = new FilterDialog();
-            filterDialog.show(getSupportFragmentManager(), "Filtriraj");
+        ConstraintLayout filterBtn = findViewById(R.id.btn_filter);
+        filterBtn.setOnClickListener(view -> {
+            openDialog();
         });
 
     }
@@ -99,15 +117,52 @@ public class TradesActivity extends AppCompatActivity {
         availableTradesList.setAdapter(adapter);
     }
 
-    public static class FilterDialog extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    private void openDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View v = inflater.inflate(R.layout.filter_dialog, null);
 
-            builder.setTitle(Html.fromHtml("<font color='#FFFFFF'>Filtriraj</font>"))
-                    .setView(R.layout.filter_dialog);
+        builder.setView(v)
+                .setTitle(Html.fromHtml("<font color='#FFFFFF'>Filtriraj</font>"));
 
-            return builder.create();
-        }
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        tradeTypeBtn = v.findViewById(R.id.btn_filter_trade);
+        sellTypeBtn = v.findViewById(R.id.btn_filter_sell);
+        h00btn = v.findViewById(R.id.btn_filter_00);
+        h06btn = v.findViewById(R.id.btn_filter_06);
+        h12btn = v.findViewById(R.id.btn_filter_12);
+        h18btn = v.findViewById(R.id.btn_filter_18);
+        cancelBtn = v.findViewById(R.id.btn_filter_cancel);
+        confirmBtn = v.findViewById(R.id.btn_filter_confirm);
+
+        tvTradeType = tradeTypeBtn.findViewById(R.id.text);
+        tvSellType = sellTypeBtn.findViewById(R.id.text);
+        tvh00 = h00btn.findViewById(R.id.text);
+        tvh06 = h06btn.findViewById(R.id.text);
+        tvh12 = h12btn.findViewById(R.id.text);
+        tvh18 = h18btn.findViewById(R.id.text);
+        tvCancel = cancelBtn.findViewById(R.id.text);
+        tvConfirm = confirmBtn.findViewById(R.id.text);
+
+        tvTradeType.setText("Menjave");
+        tvSellType.setText("Oddaje");
+        tvh00.setText("00h - 06h");
+        tvh06.setText("06h - 12h");
+        tvh12.setText("12h - 18h");
+        tvh18.setText("18h - 24h");
+        tvCancel.setText("Prekliči");
+        tvConfirm.setText("Potrdi");
+
+        groupSp = v.findViewById(R.id.spinner_group);
+        homeSp = v.findViewById(R.id.spinner_home);
+        ArrayAdapter<CharSequence> groupAdapter = ArrayAdapter.createFromResource(this, R.array.group_array, R.layout.spinner_item);
+        ArrayAdapter<CharSequence> homeAdapter = ArrayAdapter.createFromResource(this, R.array.homes_array, R.layout.spinner_item);
+
+        groupAdapter.setDropDownViewResource(R.layout.dropdown_item);
+        homeAdapter.setDropDownViewResource(R.layout.dropdown_item);
+        groupSp.setAdapter(groupAdapter);
+        homeSp.setAdapter(homeAdapter);
     }
 }
