@@ -93,14 +93,14 @@
 
         <include
             android:id="@+id/trade_cancel"
-            layout="@layout/dezurka_btn"
+            layout="@layout/btn_dezurka"
             android:layout_margin="5dp"
             android:layout_width="@dimen/dezurka_btn_width"
             android:layout_height="@dimen/dezurka_btn_height" />
 
         <include
             android:id="@+id/trade_confirm"
-            layout="@layout/dezurka_btn"
+            layout="@layout/btn_dezurka"
             android:layout_margin="5dp"
             android:layout_width="@dimen/dezurka_btn_width"
             android:layout_height="@dimen/dezurka_btn_height" />

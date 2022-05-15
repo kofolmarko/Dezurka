@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/my_dates_btn"
-        layout="@layout/dashboard_btn"
+        layout="@layout/btn_dashboard"
         android:layout_width="@dimen/dashboard_btn_width"
         android:layout_height="@dimen/dashboard_btn_height"
         app:layout_constraintBottom_toTopOf="@id/available_dates_btn"
@@ -17,7 +17,7 @@
 
     <include
         android:id="@+id/available_dates_btn"
-        layout="@layout/dashboard_btn"
+        layout="@layout/btn_dashboard"
         android:layout_width="@dimen/dashboard_btn_width"
         android:layout_height="@dimen/dashboard_btn_height"
         app:layout_constraintBottom_toTopOf="@id/trades_btn"
@@ -27,7 +27,7 @@
 
     <include
         android:id="@+id/trades_btn"
-        layout="@layout/dashboard_btn"
+        layout="@layout/btn_dashboard"
         android:layout_width="@dimen/dashboard_btn_width"
         android:layout_height="@dimen/dashboard_btn_height"
         app:layout_constraintBottom_toBottomOf="parent"

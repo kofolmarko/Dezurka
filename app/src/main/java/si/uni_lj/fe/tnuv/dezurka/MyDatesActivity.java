@@ -111,7 +111,7 @@ public class MyDatesActivity extends AppCompatActivity {
             Date date = getItem(position);
 
             if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.my_dates_item, parent, false);
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_my_dates, parent, false);
             }
 
             TextView tvDate = convertView.findViewById(R.id.date);

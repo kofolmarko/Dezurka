@@ -19,7 +19,7 @@
 
   <include
       android:id="@+id/btn_filter"
-      layout="@layout/dezurka_btn"
+      layout="@layout/btn_dezurka"
       android:layout_width="match_parent"
       android:layout_height="@dimen/dezurka_btn_height"
       android:layout_marginHorizontal="20dp"

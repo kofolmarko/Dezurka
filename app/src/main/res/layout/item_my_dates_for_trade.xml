@@ -51,4 +51,15 @@
         android:textStyle="bold"
         android:background="@color/dezurka_grey"/>
 
+    <CheckBox
+        android:id="@+id/cb_pick_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/dezurka_red"
+        android:checked="false"
+        android:text=""
+        android:textColor="@color/dezurka_white"
+        android:layout_marginStart="40dp"
+        android:gravity="center"/>
+
 </LinearLayout>

@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/settings_btn_1"
-        layout="@layout/settings_btn"
+        layout="@layout/btn_settings"
         android:layout_width="@dimen/dashboard_btn_width"
         android:layout_height="@dimen/settings_btn_height"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,7 +17,7 @@
 
     <include
         android:id="@+id/settings_btn_2"
-        layout="@layout/settings_btn"
+        layout="@layout/btn_settings"
         android:layout_width="@dimen/dashboard_btn_width"
         android:layout_height="@dimen/settings_btn_height"
         app:layout_constraintEnd_toEndOf="@+id/settings_btn_1"
@@ -27,7 +27,7 @@
 
     <include
         android:id="@+id/settings_btn_3"
-        layout="@layout/settings_btn"
+        layout="@layout/btn_settings"
         android:layout_width="@dimen/dashboard_btn_width"
         android:layout_height="@dimen/settings_btn_height"
         app:layout_constraintEnd_toEndOf="@+id/settings_btn_2"
@@ -37,7 +37,7 @@
 
     <include
         android:id="@+id/settings_btn_4"
-        layout="@layout/settings_btn"
+        layout="@layout/btn_settings"
         android:layout_width="@dimen/dashboard_btn_width"
         android:layout_height="@dimen/settings_btn_height"
         app:layout_constraintEnd_toEndOf="@+id/settings_btn_3"

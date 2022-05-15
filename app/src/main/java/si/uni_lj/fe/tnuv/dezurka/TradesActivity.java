@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -130,7 +129,7 @@ public class TradesActivity extends AppCompatActivity {
     private void openDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
-        View v = inflater.inflate(R.layout.filter_dialog, null);
+        View v = inflater.inflate(R.layout.dialog_filter, null);
 
         builder.setView(v)
                 .setTitle(Html.fromHtml("<font color='#FFFFFF'>Filtriraj</font>"));
@@ -167,12 +166,17 @@ public class TradesActivity extends AppCompatActivity {
 
         groupSp = v.findViewById(R.id.spinner_group);
         homeSp = v.findViewById(R.id.spinner_home);
-        ArrayAdapter<CharSequence> groupAdapter = ArrayAdapter.createFromResource(this, R.array.group_array, R.layout.spinner_item);
-        ArrayAdapter<CharSequence> homeAdapter = ArrayAdapter.createFromResource(this, R.array.homes_array, R.layout.spinner_item);
+        ArrayAdapter<CharSequence> groupAdapter = ArrayAdapter.createFromResource(this, R.array.group_array, R.layout.item_spinner);
+        ArrayAdapter<CharSequence> homeAdapter = ArrayAdapter.createFromResource(this, R.array.homes_array, R.layout.item_spinner);
 
-        groupAdapter.setDropDownViewResource(R.layout.dropdown_item);
-        homeAdapter.setDropDownViewResource(R.layout.dropdown_item);
+        groupAdapter.setDropDownViewResource(R.layout.item_dropdown);
+        homeAdapter.setDropDownViewResource(R.layout.item_dropdown);
         groupSp.setAdapter(groupAdapter);
         homeSp.setAdapter(homeAdapter);
+
+        cancelBtn.setOnClickListener(view -> {
+            dialog.cancel();
+        });
+
     }
 }

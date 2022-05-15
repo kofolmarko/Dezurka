@@ -10,8 +10,51 @@
     <ListView
         android:id="@+id/my_trades_list"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
         android:layout_marginHorizontal="10dp"
-        android:dividerHeight="10sp" />
+        android:layout_marginVertical="40dp"
+        android:dividerHeight="20sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cb_trade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/dezurka_red"
+            android:checked="false"
+            android:padding="7dp"
+            android:text="Menjava"
+            android:textColor="@color/dezurka_white"
+            android:textSize="22sp"
+            android:layout_marginHorizontal="20dp"/>
+        />
+
+        <CheckBox
+            android:id="@+id/cb_sell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/dezurka_red"
+            android:checked="false"
+            android:padding="7dp"
+            android:text="Oddaja"
+            android:textColor="@color/dezurka_white"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/confirm_trade_btn"
+        layout="@layout/btn_dezurka"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dezurka_btn_height"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"/>
+
 
 </LinearLayout>

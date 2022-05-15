@@ -113,7 +113,7 @@
 
   <include
       android:id="@+id/btn_trade"
-      layout="@layout/dezurka_btn"
+      layout="@layout/btn_dezurka"
       android:layout_marginTop="30dp"
       android:layout_width="@dimen/dezurka_btn_width"
       android:layout_height="@dimen/dezurka_btn_height" />

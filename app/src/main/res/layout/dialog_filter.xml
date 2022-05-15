@@ -23,14 +23,14 @@
 
         <include
             android:id="@+id/btn_filter_trade"
-            layout="@layout/dezurka_btn"
+            layout="@layout/btn_dezurka"
             android:layout_width="@dimen/dezurka_btn_width"
             android:layout_height="@dimen/dezurka_btn_height"
             android:layout_margin="10dp" />
 
         <include
             android:id="@+id/btn_filter_sell"
-            layout="@layout/dezurka_btn"
+            layout="@layout/btn_dezurka"
             android:layout_width="@dimen/dezurka_btn_width"
             android:layout_height="@dimen/dezurka_btn_height"
             android:layout_margin="10dp" />
@@ -59,14 +59,14 @@
 
             <include
                 android:id="@+id/btn_filter_00"
-                layout="@layout/dezurka_btn"
+                layout="@layout/btn_dezurka"
                 android:layout_width="@dimen/dezurka_btn_width"
                 android:layout_height="@dimen/dezurka_btn_height"
                 android:layout_margin="10dp" />
 
             <include
                 android:id="@+id/btn_filter_06"
-                layout="@layout/dezurka_btn"
+                layout="@layout/btn_dezurka"
                 android:layout_width="@dimen/dezurka_btn_width"
                 android:layout_height="@dimen/dezurka_btn_height"
                 android:layout_margin="10dp" />
@@ -81,14 +81,14 @@
 
             <include
                 android:id="@+id/btn_filter_12"
-                layout="@layout/dezurka_btn"
+                layout="@layout/btn_dezurka"
                 android:layout_width="@dimen/dezurka_btn_width"
                 android:layout_height="@dimen/dezurka_btn_height"
                 android:layout_margin="10dp" />
 
             <include
                 android:id="@+id/btn_filter_18"
-                layout="@layout/dezurka_btn"
+                layout="@layout/btn_dezurka"
                 android:layout_width="@dimen/dezurka_btn_width"
                 android:layout_height="@dimen/dezurka_btn_height"
                 android:layout_margin="10dp" />
@@ -146,14 +146,14 @@
 
         <include
             android:id="@+id/btn_filter_cancel"
-            layout="@layout/dezurka_btn"
+            layout="@layout/btn_dezurka"
             android:layout_width="@dimen/dezurka_btn_width"
             android:layout_height="@dimen/dezurka_btn_height"
             android:layout_margin="10dp" />
 
         <include
             android:id="@+id/btn_filter_confirm"
-            layout="@layout/dezurka_btn"
+            layout="@layout/btn_dezurka"
             android:layout_width="@dimen/dezurka_btn_width"
             android:layout_height="@dimen/dezurka_btn_height"
             android:layout_margin="10dp" />

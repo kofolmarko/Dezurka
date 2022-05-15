@@ -1,8 +1,7 @@
 package si.uni_lj.fe.tnuv.dezurka;
 
 import androidx.appcompat.app.AppCompatActivity;
-import static si.uni_lj.fe.tnuv.dezurka.DezurkaToolbar.setupToolbar;
-import static si.uni_lj.fe.tnuv.dezurka.HamburgerMenu.setupHamburgerMenu;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,7 +16,9 @@ import java.util.ArrayList;
 
 public class AddTradeActivity extends AppCompatActivity {
 
-    ListView myTradesList;
+    private ListView myTradesList;
+    private ConstraintLayout addTradeBtn;
+    private TextView tvAddTradeBtn;
 
     ArrayList<MyDatesActivity.Date> arrayOfMyTrades = new ArrayList<MyDatesActivity.Date>();
 
@@ -27,6 +28,10 @@ public class AddTradeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_trade);
 
         myTradesList = findViewById(R.id.my_trades_list);
+
+        addTradeBtn = findViewById(R.id.confirm_trade_btn);
+        tvAddTradeBtn = addTradeBtn.findViewById(R.id.text);
+        tvAddTradeBtn.setText("Potrdi");
 
         showMyTrades();
 
@@ -42,7 +47,7 @@ public class AddTradeActivity extends AppCompatActivity {
             MyDatesActivity.Date date = getItem(position);
 
             if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.my_dates_item, parent, false);
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_my_dates_for_trade, parent, false);
             }
 
             TextView tvDate = convertView.findViewById(R.id.date);
@@ -56,7 +61,7 @@ public class AddTradeActivity extends AppCompatActivity {
     }
 
     private void showMyTrades() {
-        MyDatesActivity.DatesAdapter adapter = new MyDatesActivity.DatesAdapter(this, arrayOfMyTrades);
+        MyTradesAdapter adapter = new MyTradesAdapter(this, arrayOfMyTrades);
 
         MyDatesActivity.Date newDate0 = new MyDatesActivity.Date("21.12.2022", "12h - 18h", "Jurij Sokol", "Dom 5, Rožna Dolina");
         MyDatesActivity.Date newDate1 = new MyDatesActivity.Date("26.12.2022", "18h - 24h", "Jurij Sokol", "Dom 5, Rožna Dolina");
