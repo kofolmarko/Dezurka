@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="20dp">
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:text="Filtriraj po tipu ponudbe"
+        android:textColor="@color/dezurka_white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <include
+            android:id="@+id/btn_filter_trade"
+            layout="@layout/btn_dezurka"
+            android:layout_width="@dimen/dezurka_btn_width"
+            android:layout_height="@dimen/dezurka_btn_height"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/btn_filter_sell"
+            layout="@layout/btn_dezurka"
+            android:layout_width="@dimen/dezurka_btn_width"
+            android:layout_height="@dimen/dezurka_btn_height"
+            android:layout_margin="10dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:text="Filtriraj po terminu"
+        android:textColor="@color/dezurka_white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/btn_filter_00"
+                layout="@layout/btn_dezurka"
+                android:layout_width="@dimen/dezurka_btn_width"
+                android:layout_height="@dimen/dezurka_btn_height"
+                android:layout_margin="10dp" />
+
+            <include
+                android:id="@+id/btn_filter_06"
+                layout="@layout/btn_dezurka"
+                android:layout_width="@dimen/dezurka_btn_width"
+                android:layout_height="@dimen/dezurka_btn_height"
+                android:layout_margin="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/btn_filter_12"
+                layout="@layout/btn_dezurka"
+                android:layout_width="@dimen/dezurka_btn_width"
+                android:layout_height="@dimen/dezurka_btn_height"
+                android:layout_margin="10dp" />
+
+            <include
+                android:id="@+id/btn_filter_18"
+                layout="@layout/btn_dezurka"
+                android:layout_width="@dimen/dezurka_btn_width"
+                android:layout_height="@dimen/dezurka_btn_height"
+                android:layout_margin="10dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:text="Filtriraj po naselju"
+        android:textColor="@color/dezurka_white" />
+
+    <Spinner
+        android:id="@+id/spinner_group"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/dezurka_red"
+        android:contentDescription="Naselje"
+        android:popupBackground="@color/dezurka_red" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:text="Filtriraj po domu"
+        android:textColor="@color/dezurka_white" />
+
+    <Spinner
+        android:id="@+id/spinner_home"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/dezurka_red"
+        android:contentDescription="Dom"
+        android:popupBackground="@color/dezurka_red" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="20dp" >
+
+        <include
+            android:id="@+id/btn_filter_cancel"
+            layout="@layout/btn_dezurka"
+            android:layout_width="@dimen/dezurka_btn_width"
+            android:layout_height="@dimen/dezurka_btn_height"
+            android:layout_margin="10dp" />
+
+        <include
+            android:id="@+id/btn_filter_confirm"
+            layout="@layout/btn_dezurka"
+            android:layout_width="@dimen/dezurka_btn_width"
+            android:layout_height="@dimen/dezurka_btn_height"
+            android:layout_margin="10dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -232,7 +232,7 @@
 
             <include
                 android:id="@+id/reserve_btn_1"
-                layout="@layout/dezurka_btn"
+                layout="@layout/btn_dezurka"
                 android:layout_width="@dimen/dezurka_btn_width"
                 android:layout_height="@dimen/dezurka_btn_height"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -244,7 +244,7 @@
 
             <include
                 android:id="@+id/reserve_btn_2"
-                layout="@layout/dezurka_btn"
+                layout="@layout/btn_dezurka"
                 android:layout_width="@dimen/dezurka_btn_width"
                 android:layout_height="@dimen/dezurka_btn_height"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -256,7 +256,7 @@
 
             <include
                 android:id="@+id/reserve_btn_3"
-                layout="@layout/dezurka_btn"
+                layout="@layout/btn_dezurka"
                 android:layout_width="@dimen/dezurka_btn_width"
                 android:layout_height="@dimen/dezurka_btn_height"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -268,7 +268,7 @@
 
             <include
                 android:id="@+id/reserve_btn_4"
-                layout="@layout/dezurka_btn"
+                layout="@layout/btn_dezurka"
                 android:layout_width="@dimen/dezurka_btn_width"
                 android:layout_height="@dimen/dezurka_btn_height"
                 app:layout_constraintBottom_toBottomOf="parent"

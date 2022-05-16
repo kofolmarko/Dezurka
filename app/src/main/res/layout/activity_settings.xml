@@ -15,7 +15,7 @@
 
     <include
         android:id="@+id/btn_group"
-        layout="@layout/settings_btn_group"
+        layout="@layout/btn_group_settings"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

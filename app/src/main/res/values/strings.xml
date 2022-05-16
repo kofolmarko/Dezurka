@@ -56,4 +56,20 @@
         <item>Slovenščina</item>
         <item>English</item>
     </string-array>
+
+    <string-array name="homes_array">
+        <item>Dom 1, Rožna Dolina</item>
+        <item>Dom 2, Rožna Dolina</item>
+        <item>Dom 3, Rožna Dolina</item>
+        <item>Dom 4, Rožna Dolina</item>
+        <item>Dom 5, Rožna Dolina</item>
+    </string-array>
+
+    <string-array name="group_array">
+        <item>Kardeljeva Ploščad</item>
+        <item>Rožna Dolina</item>
+        <item>Mestni log</item>
+        <item>Gerba</item>
+    </string-array>
+
 </resources>

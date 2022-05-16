@@ -62,7 +62,7 @@
 
         <include
             android:id="@+id/cancel_btn"
-            layout="@layout/dezurka_btn"
+            layout="@layout/btn_dezurka"
             android:layout_width="@dimen/dezurka_btn_width"
             android:layout_height="@dimen/dezurka_btn_height"
             tools:layout_editor_absoluteX="16dp"
@@ -70,7 +70,7 @@
 
         <include
             android:id="@+id/confirm_btn"
-            layout="@layout/dezurka_btn"
+            layout="@layout/btn_dezurka"
             android:layout_width="@dimen/dezurka_btn_width"
             android:layout_height="@dimen/dezurka_btn_height"
             tools:layout_editor_absoluteX="190dp"
