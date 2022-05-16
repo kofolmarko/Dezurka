@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    style="?android:attr/spinnerItemStyle"
+    android:singleLine="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ellipsize="marquee"
+    android:textAlignment="inherit"
+    android:background="@drawable/dashboard_btn"
+    android:fontFamily="@font/creatodisplay_light"
+    android:textSize="20dp"
+    android:textColor="@color/dezurka_white"
+    android:padding="10dp"/>
