@@ -1,5 +1,8 @@
 package si.uni_lj.fe.tnuv.dezurka;
 
+import static si.uni_lj.fe.tnuv.dezurka.DezurkaToolbar.setupToolbar;
+import static si.uni_lj.fe.tnuv.dezurka.HamburgerMenu.setupHamburgerMenu;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -27,6 +30,9 @@ public class MyDateDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        setupHamburgerMenu(this);
+        setupToolbar(getResources().getString(R.string.my_dates_btn), this);
 
         TextView dateText = findViewById(R.id.text_date);
         TextView timeText = findViewById(R.id.text_time);

@@ -64,11 +64,24 @@
         <entry key="app/src/main/res/drawable/custom_checkbox.xml" value="0.2175" />
         <entry key="app/src/main/res/layout/activity_add_trade.xml" value="0.2006340579710145" />
         <entry key="app/src/main/res/layout/activity_available_dates.xml" value="0.18115942028985507" />
+        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.18115942028985507" />
+        <entry key="app/src/main/res/layout/activity_details.xml" value="0.18115942028985507" />
         <entry key="app/src/main/res/layout/activity_my_dates.xml" value="0.18115942028985507" />
+        <entry key="app/src/main/res/layout/activity_my_trade_deals.xml" value="0.18115942028985507" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.2980072463768116" />
+        <entry key="app/src/main/res/layout/activity_settings_general.xml" value="0.2980072463768116" />
         <entry key="app/src/main/res/layout/activity_trades.xml" value="0.18115942028985507" />
+        <entry key="app/src/main/res/layout/available_trade_item.xml" value="0.18115942028985507" />
+        <entry key="app/src/main/res/layout/btn_dezurka.xml" value="0.18115942028985507" />
+        <entry key="app/src/main/res/layout/btn_settings.xml" value="0.18115942028985507" />
         <entry key="app/src/main/res/layout/dezurka_confirm_popup.xml" value="0.18115942028985507" />
+        <entry key="app/src/main/res/layout/dialog_confirm.xml" value="0.18115942028985507" />
+        <entry key="app/src/main/res/layout/dialog_filter.xml" value="0.18115942028985507" />
         <entry key="app/src/main/res/layout/item_my_dates.xml" value="0.18115942028985507" />
         <entry key="app/src/main/res/layout/item_my_dates_for_trade.xml" value="0.18115942028985507" />
+        <entry key="app/src/main/res/layout/item_my_trade_deals.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_spinner.xml" value="0.18115942028985507" />
+        <entry key="app/src/main/res/layout/item_trade.xml" value="0.18115942028985507" />
       </map>
     </option>
   </component>

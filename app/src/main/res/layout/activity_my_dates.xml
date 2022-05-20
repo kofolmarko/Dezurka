@@ -44,35 +44,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/my_dates_text"
         app:layout_constraintStart_toStartOf="@id/my_dates_text"
         app:layout_constraintTop_toBottomOf="@id/my_dates_text"
-        app:layout_constraintVertical_bias="0.05"
-        android:visibility="invisible" />
+        app:layout_constraintVertical_bias="0.05" />
+
+    <TextView
+        android:id="@+id/available_trades_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/include2"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/my_dates_calendar"
+        app:layout_constraintVertical_bias="0.050000012" />
 
     <include
-        android:id="@+id/btn_list"
+        android:id="@+id/btn_show_trade_deals"
         layout="@layout/btn_dezurka"
-        android:layout_marginTop="30dp"
-        android:layout_width="@dimen/dezurka_btn_width"
-        android:layout_height="@dimen/dezurka_btn_height"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_calendar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7"/>
-
-    <include
-        android:id="@+id/btn_calendar"
-        layout="@layout/btn_dezurka"
-        android:layout_marginTop="30dp"
         android:layout_width="@dimen/dezurka_btn_width"
         android:layout_height="@dimen/dezurka_btn_height"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_list"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_dates_calendar"
+        app:layout_constraintVertical_bias="0.3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
