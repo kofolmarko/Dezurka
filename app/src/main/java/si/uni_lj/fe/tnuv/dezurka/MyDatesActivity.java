@@ -21,8 +21,10 @@ import static si.uni_lj.fe.tnuv.dezurka.HamburgerMenu.setupHamburgerMenu;
 
 public class MyDatesActivity extends AppCompatActivity {
 
-    ListView myDatesList;
-    CalendarView myDatesCalendar;
+    private ListView myDatesList;
+    private TextView tvAvailableTrades;
+    private ConstraintLayout btnShowDeals;
+    private TextView tvShowDeals;
 
     ArrayList<Date> arrayOfDates = new ArrayList<Date>();
 
@@ -53,39 +55,22 @@ public class MyDatesActivity extends AppCompatActivity {
         setupHamburgerMenu(this);
         setupToolbar(getResources().getString(R.string.my_dates_btn), this);
 
-        ConstraintLayout btnList = findViewById(R.id.btn_list);
-        ConstraintLayout btnCalendar = findViewById(R.id.btn_calendar);
-        TextView myNextDateText = findViewById(R.id.my_dates_text);
         myDatesList = findViewById(R.id.my_dates_list);
-        myDatesCalendar = findViewById(R.id.my_dates_calendar);
 
-        TextView listBtn = btnList.findViewById(R.id.text);
-        TextView calendarBtn = btnCalendar.findViewById(R.id.text);
-        listBtn.setText("Seznam");
-        calendarBtn.setText("Koledar");
+        tvAvailableTrades = findViewById(R.id.available_trades_text);
+        int numOfTrades = 2;
+        tvAvailableTrades.setText("Aktivnih ponudb za menjavo: " + numOfTrades);
+
+        btnShowDeals = findViewById(R.id.btn_show_trade_deals);
+        tvShowDeals = btnShowDeals.findViewById(R.id.text);
+        tvShowDeals.setText("Prikaži ponudbe");
 
         Intent intent = getIntent();
         String myNextDate = intent.getStringExtra(DashboardActivity.MYNEXTDATE);
-
+        TextView myNextDateText = findViewById(R.id.my_dates_text);
         myNextDateText.setText(myNextDate);
 
         showDates();
-
-        btnList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                myDatesCalendar.setVisibility(View.INVISIBLE);
-                myDatesList.setVisibility(View.VISIBLE);
-            }
-        });
-
-        btnCalendar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                myDatesList.setVisibility(View.INVISIBLE);
-                myDatesCalendar.setVisibility(View.VISIBLE);
-            }
-        });
 
         myDatesList.setOnItemClickListener(((adapterView, view, i, l) -> {
             Date selectedDate = arrayOfDates.get(i);
@@ -99,6 +84,10 @@ public class MyDatesActivity extends AppCompatActivity {
             startActivity(detailsIntent);
         }));
 
+        btnShowDeals.setOnClickListener(view -> {
+            Intent availableTrades = new Intent(this, MyTradeDealsActivity.class);
+            startActivity(availableTrades);
+        });
     }
 
     public static class DatesAdapter extends ArrayAdapter<Date> {

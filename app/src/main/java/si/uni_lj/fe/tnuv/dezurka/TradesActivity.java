@@ -88,7 +88,7 @@ public class TradesActivity extends AppCompatActivity {
             MyDatesActivity.Date date = getItem(position);
 
             if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.available_trade_item, parent, false);
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_available_trade, parent, false);
             }
 
             TextView tvDate = convertView.findViewById(R.id.available_trade_date);

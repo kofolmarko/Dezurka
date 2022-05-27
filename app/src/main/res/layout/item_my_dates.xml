@@ -11,6 +11,7 @@
     android:background="@color/dezurka_grey"
     android:layout_marginHorizontal="40dp"
     android:layout_marginVertical="20dp"
+    app:circularflow_radiusInDP=""
     >
 
     <ImageView

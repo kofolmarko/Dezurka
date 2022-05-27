@@ -19,6 +19,9 @@
             android:name=".SettingsHelpRulesActivity"
             android:exported="false" />
         <activity
+            android:name=".MyTradeDealsActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddTradeActivity"
             android:exported="false" />
         <activity
