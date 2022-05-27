@@ -10,12 +10,6 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/hamburger_layout"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="-16dp" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
         android:layout_width="@dimen/card_view_width"
@@ -281,5 +275,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/hamburger_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -52,6 +52,16 @@
     <string name="vibration_ntf_checkbox">Vibracije</string>
     <string name="theme_switch">Tema aplikacije</string>
     <string name="language">Jezik</string>
+    <string name="logout_text">ODJAVA</string>
+    <string name="mystudent_text">MOJ ŠTUDENT</string>
+    <string name="settings_help_text_1">PRAVILNIK DEŽURSTVA</string>
+    <string name="settings_help_text_2">KONTAKT DO UPRAVE</string>
+    <string name="settings_help_text_3">POGOSTA VPRAŠANJA</string>
+    <string name="rules_text">31. člen (dežurna vratarska služba) V domovih je organizirana stalna dežurna vratarska služba, ki so jo dolžni brezplačno opravljati študentje doma po razporedu, razen če to delo opravlja profesionalna varnostna služba. Opravlja se v vratarski loži, po navodilih uprave. Odgovorna oseba za organizacijo dežurstva je namestnik predstavnika doma, kadar pa varuje profesionalna služba pa organizira varovanje varnostni inženir. ŠTUDENTSKI DOM LJUBLJANA Cesta 27. aprila 31, 1000 Ljubljana Telefon: (01) 242 1000, Faks: (01) 242 1010 E-pošta: studentski.domovi@siol.net Kadar opravljajo dežurno službo študentje, razpored dežurstva pripravlja namestnik predstavnika doma in ga pravočasno razobesi v vratarski loži. Dežurni sme opravljati varovanje največ 12 ur dnevno. 32. člen (plačano dežurstvo) V domovih, kjer stanovalci neredno opravljajo dežurno vratarsko službo in v domovih, kjer se stanovalci sami dogovorijo za plačano dežurstvo, to lahko opravljajo dežurni študentje, na stroške vseh stanovalcev. V tem primeru predstavnik doma obvesti direktorico. Stanovalci lahko na sestanku doma sprejmejo sklep, da se neopravljeno dežurstvo sankcionira s plačilom kot nadomestilo za neopravljeno dežurstvo, ki je enako kot plačilo za dežurstvo. Profesionalno varnostno službo odredi direktorica Zavoda. 33. člen ( zamenjava dežurnega) Stanovalec, ki ne more nastopiti dežurne službe v času, za katerega je razporejen, si je dolžan pravočasno zagotoviti zamenjavo in o tem obvestiti namestnika predstavnika doma. 34. člen (izjeme od dežurstva) Roditelj, ki živi v domu sam z otrokom, nosečnice od petega meseca nosečnosti dalje, bolniki in invalidi ne dežurajo, razen v primeru, če to sami želijo. Tuji študenti, ki so v domu prvo leto, ne morejo dežurati, ker ne poznajo jezika in razmer. Vsi navedeni, za katere dolžnost dežurstva ne velja, plačujejo nadomestilo za neopravljanje dežurstva.</string>
+    <string name="uprava_phone_number">(01) 242 1000</string>
+    <string name="uprava_address">Svetčeva ulica 9, 1000 Ljubljana</string>
+    <string name="uprava_email">studentski.domovi@stud-dom-lj.si</string>
+    <string name="uprava_webpage">https://www.stud-dom-lj.si</string>
     <string-array name="languages">
         <item>Slovenščina</item>
         <item>English</item>

@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dezurka">
         <activity
+            android:name=".SettingsHelpQaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsHelpContactActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsHelpRulesActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddTradeActivity"
             android:exported="false" />
         <activity
