@@ -91,11 +91,11 @@ public class TradesActivity extends AppCompatActivity {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_available_trade, parent, false);
             }
 
-            TextView tvDate = convertView.findViewById(R.id.available_trade_date);
-            TextView tvTime = convertView.findViewById(R.id.available_trade_time);
-            TextView tvPerson = convertView.findViewById(R.id.available_trade_person);
-            TextView tvHome = convertView.findViewById(R.id.available_trade_home);
-            TextView tvType = convertView.findViewById(R.id.available_trade_type);
+            TextView tvDate = convertView.findViewById(R.id.date);
+            TextView tvTime = convertView.findViewById(R.id.time);
+            TextView tvPerson = convertView.findViewById(R.id.student);
+            TextView tvHome = convertView.findViewById(R.id.location);
+            TextView tvType = convertView.findViewById(R.id.type);
 
             tvDate.setText(date.date);
             tvTime.setText(date.time);

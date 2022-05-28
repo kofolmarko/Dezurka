@@ -12,12 +12,6 @@
       layout="@layout/toolbar"/>
 
   <include
-      android:id="@+id/include3"
-      layout="@layout/hamburger_layout"
-      tools:layout_editor_absoluteX="-28dp"
-      tools:layout_editor_absoluteY="16dp" />
-
-  <include
       android:id="@+id/btn_filter"
       layout="@layout/btn_dezurka"
       android:layout_width="match_parent"
@@ -41,6 +35,7 @@
       app:layout_constraintTop_toBottomOf="@+id/btn_filter"
       app:layout_constraintVertical_bias="0.01999998">
 
+    <!--
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -56,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         app:srcCompat="@drawable/hamburger_settings_icon" />
+    -->
 
   </LinearLayout>
 
@@ -66,8 +62,15 @@
       android:layout_margin="20dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="@+id/btn_filter"
+      app:layout_constraintHorizontal_bias="1.0"
       app:layout_constraintStart_toStartOf="@+id/btn_filter"
       app:layout_constraintTop_toBottomOf="@+id/btn_filter"
-      app:layout_constraintVertical_bias="1.0" />
+      app:layout_constraintVertical_bias="0.0" />
+
+  <include
+      android:id="@+id/include3"
+      layout="@layout/hamburger_layout"
+      tools:layout_editor_absoluteX="-28dp"
+      tools:layout_editor_absoluteY="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

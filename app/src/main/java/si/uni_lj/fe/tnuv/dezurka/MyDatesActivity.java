@@ -1,11 +1,15 @@
 package si.uni_lj.fe.tnuv.dezurka;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +19,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import static si.uni_lj.fe.tnuv.dezurka.DezurkaToolbar.setupToolbar;
 import static si.uni_lj.fe.tnuv.dezurka.HamburgerMenu.setupHamburgerMenu;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class MyDatesActivity extends AppCompatActivity {
 
@@ -116,11 +127,31 @@ public class MyDatesActivity extends AppCompatActivity {
     private void showDates() {
         DatesAdapter adapter = new DatesAdapter(this, arrayOfDates);
 
-        Date newDate0 = new Date("21.12.2022", "12h - 18h", "Jurij Sokol", "Dom 5, Rožna Dolina");
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("dates")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Map data = document.getData();
+                                String date = data.get("term").toString();
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                Date newDate0 = new Date(date, "12h - 18h", "Jurij Sokol", "Dom 5, Rožna Dolina");
+                                adapter.add(newDate0);
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
         Date newDate1 = new Date("26.12.2022", "18h - 24h", "Jurij Sokol", "Dom 5, Rožna Dolina");
         Date newDate2 = new Date("29.12.2022", "00h - 06h", "Jurij Sokol", "Dom 5, Rožna Dolina");
         Date newDate3 = new Date("30.12.2022", "00h - 06h", "Jurij Sokol", "Dom 5, Rožna Dolina");
-        adapter.add(newDate0);
+
         adapter.add(newDate1);
         adapter.add(newDate2);
         adapter.add(newDate3);
