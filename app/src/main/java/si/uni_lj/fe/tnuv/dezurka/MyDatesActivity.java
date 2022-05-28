@@ -19,13 +19,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import static si.uni_lj.fe.tnuv.dezurka.DezurkaToolbar.setupToolbar;
 import static si.uni_lj.fe.tnuv.dezurka.HamburgerMenu.setupHamburgerMenu;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -128,7 +135,41 @@ public class MyDatesActivity extends AppCompatActivity {
         DatesAdapter adapter = new DatesAdapter(this, arrayOfDates);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+//generateDatesScript();
 
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        DocumentReference userData = db.collection("users").document(mAuth.getCurrentUser().getUid());
+
+        userData.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Map data = documentSnapshot.getData();
+                ArrayList<DocumentReference> ownedDates = (ArrayList<DocumentReference>) data.get("owned_dates");
+                for (DocumentReference ownedDate : ownedDates) {
+                    Log.i("owned date: ", String.valueOf(ownedDate));
+                    db.document(ownedDate.getPath())
+                            .get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    Map data = documentSnapshot.getData();
+                                    String dorm = (String) data.get("dorm");
+                                    adapter.add(new Date(
+                                            (String) data.get("date"),
+                                            (String) data.get("time"),
+                                            (String) data.get("owner"),
+                                            (String) data.get("campus") + ", Dom " + (String) data.get("dorm"))
+                                    );
+                                }
+                            });
+                }
+                String d = (String) data.get("dorm");
+
+            }
+        });
+
+        /*
         db.collection("dates")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -136,11 +177,12 @@ public class MyDatesActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Map data = document.getData();
-                                String date = data.get("term").toString();
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                Date newDate0 = new Date(date, "12h - 18h", "Jurij Sokol", "Dom 5, Rožna Dolina");
-                                adapter.add(newDate0);
+                                adapter.add(new Date(
+                                        document.getData().get("date").toString(),
+                                        document.getData().get("time").toString(),
+                                        document.getData().get("owner").toString(),
+                                        document.getData().get("campus").toString() + ", Dom " + document.getData().get("dorm").toString())
+                                );
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
@@ -148,15 +190,41 @@ public class MyDatesActivity extends AppCompatActivity {
                     }
                 });
 
-        Date newDate1 = new Date("26.12.2022", "18h - 24h", "Jurij Sokol", "Dom 5, Rožna Dolina");
+        /*Date newDate1 = new Date("26.12.2022", "18h - 24h", "Jurij Sokol", "Dom 5, Rožna Dolina");
         Date newDate2 = new Date("29.12.2022", "00h - 06h", "Jurij Sokol", "Dom 5, Rožna Dolina");
         Date newDate3 = new Date("30.12.2022", "00h - 06h", "Jurij Sokol", "Dom 5, Rožna Dolina");
 
         adapter.add(newDate1);
         adapter.add(newDate2);
-        adapter.add(newDate3);
+        adapter.add(newDate3);*/
 
         myDatesList.setAdapter(adapter);
     }
+void generateDatesScript() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    Map<String, Object> date = new HashMap<>();
+    date.put("date", "15. 6. 2022");
+    date.put("time", "18h - 24h");
+    date.put("dorm", "12");
+    date.put("campus", "Rožna Dolina");
+    date.put("owner", "Luka Mali");
+    date.put("is tradable", false);
+
+// Add a new document with a generated ID
+    db.collection("dates")
+            .add(date)
+            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.w(TAG, "Error adding document", e);
+                }
+            });
+}
 }
