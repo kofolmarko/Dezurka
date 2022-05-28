@@ -44,6 +44,9 @@ public class MyDatesActivity extends AppCompatActivity {
     private ConstraintLayout btnShowDeals;
     private TextView tvShowDeals;
 
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     ArrayList<Date> arrayOfDates = new ArrayList<Date>();
 
     static String DETAILSDATE = "date";
@@ -134,97 +137,66 @@ public class MyDatesActivity extends AppCompatActivity {
     private void showDates() {
         DatesAdapter adapter = new DatesAdapter(this, arrayOfDates);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//generateDatesScript();
+        DocumentReference currentUserData = db.collection("users").document(mAuth.getCurrentUser().getUid());
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-        DocumentReference userData = db.collection("users").document(mAuth.getCurrentUser().getUid());
-
-        userData.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Map data = documentSnapshot.getData();
-                ArrayList<DocumentReference> ownedDates = (ArrayList<DocumentReference>) data.get("owned_dates");
-                for (DocumentReference ownedDate : ownedDates) {
-                    Log.i("owned date: ", String.valueOf(ownedDate));
-                    db.document(ownedDate.getPath())
-                            .get()
-                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                @Override
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    Map data = documentSnapshot.getData();
-                                    String dorm = (String) data.get("dorm");
-                                    adapter.add(new Date(
-                                            (String) data.get("date"),
-                                            (String) data.get("time"),
-                                            (String) data.get("owner"),
-                                            (String) data.get("campus") + ", Dom " + (String) data.get("dorm"))
-                                    );
-                                }
-                            });
-                }
-                String d = (String) data.get("dorm");
-
+        currentUserData.get().addOnSuccessListener(documentSnapshot -> {
+            Map data = documentSnapshot.getData();
+            ArrayList<DocumentReference> ownedDates = (ArrayList<DocumentReference>) data.get("owned_dates");
+            for (DocumentReference ownedDate : ownedDates) {
+                ownedDate.get()
+                        .addOnSuccessListener(documentSnapshot1 -> {
+                            Map data1 = documentSnapshot1.getData();
+                            adapter.add(new MyDatesActivity.Date(
+                                    (String) data1.get("date"),
+                                    (String) data1.get("time"),
+                                    (String) data1.get("owner"),
+                                    (String) data1.get("campus") + ", Dom " + (String) data1.get("dorm"))
+                            );
+                        });
             }
         });
 
-        /*
-        db.collection("dates")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                adapter.add(new Date(
-                                        document.getData().get("date").toString(),
-                                        document.getData().get("time").toString(),
-                                        document.getData().get("owner").toString(),
-                                        document.getData().get("campus").toString() + ", Dom " + document.getData().get("dorm").toString())
-                                );
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-
-        /*Date newDate1 = new Date("26.12.2022", "18h - 24h", "Jurij Sokol", "Dom 5, Rožna Dolina");
-        Date newDate2 = new Date("29.12.2022", "00h - 06h", "Jurij Sokol", "Dom 5, Rožna Dolina");
-        Date newDate3 = new Date("30.12.2022", "00h - 06h", "Jurij Sokol", "Dom 5, Rožna Dolina");
-
-        adapter.add(newDate1);
-        adapter.add(newDate2);
-        adapter.add(newDate3);*/
-
         myDatesList.setAdapter(adapter);
+
+        //generateDatesScript();
     }
 void generateDatesScript() {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    Map<String, Object> date = new HashMap<>();
-    date.put("date", "15. 6. 2022");
-    date.put("time", "18h - 24h");
-    date.put("dorm", "12");
-    date.put("campus", "Rožna Dolina");
-    date.put("owner", "Luka Mali");
-    date.put("is tradable", false);
+    for (int i = 0; i < 15; i++) {
+
+        String d = i+10 + ". 6. 2022";
+        String t;
+        if(i%2 == 0) {
+            t = "18h - 24h";
+        } else {
+            t = "06h - 12h";
+        }
+
+        String dorm = i+1 + "";
+
+        Map<String, Object> date = new HashMap<>();
+        date.put("date", d);
+        date.put("time", t);
+        date.put("dorm", dorm);
+        date.put("campus", "Rožna Dolina");
+        date.put("owner", null);
+        date.put("is tradable", false);
 
 // Add a new document with a generated ID
-    db.collection("dates")
-            .add(date)
-            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference) {
-                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                }
-            })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.w(TAG, "Error adding document", e);
-                }
-            });
+        db.collection("dates")
+                .add(date)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
+    }
 }
 }
