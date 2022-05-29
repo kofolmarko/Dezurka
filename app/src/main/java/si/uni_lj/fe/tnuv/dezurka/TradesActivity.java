@@ -1,8 +1,10 @@
 package si.uni_lj.fe.tnuv.dezurka;
 
+import static android.content.ContentValues.TAG;
 import static si.uni_lj.fe.tnuv.dezurka.DezurkaToolbar.setupToolbar;
 import static si.uni_lj.fe.tnuv.dezurka.HamburgerMenu.setupHamburgerMenu;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -11,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +23,16 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
+import java.util.Map;
 
 public class TradesActivity extends AppCompatActivity {
 
@@ -48,6 +60,9 @@ public class TradesActivity extends AppCompatActivity {
 
     private Spinner groupSp;
     private Spinner homeSp;
+
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     ArrayList<MyDatesActivity.Date> arrayOfDates = new ArrayList<MyDatesActivity.Date>();
 
@@ -110,17 +125,50 @@ public class TradesActivity extends AppCompatActivity {
     private void showAvailableTrades() {
         TradesAdapter adapter = new TradesAdapter(this, arrayOfDates);
 
-        MyDatesActivity.Date newDate0 = new MyDatesActivity.Date("21.12.2022", "12h - 18h", "Jurij Sokol", "Dom 5, Rožna Dolina");
-        MyDatesActivity.Date newDate1 = new MyDatesActivity.Date("26.12.2022", "18h - 24h", "Jurij Sokol", "Dom 5, Rožna Dolina");
-        MyDatesActivity.Date newDate2 = new MyDatesActivity.Date("29.12.2022", "00h - 06h", "Jurij Sokol", "Dom 5, Rožna Dolina");
-        MyDatesActivity.Date newDate3 = new MyDatesActivity.Date("30.12.2022", "00h - 06h", "Jurij Sokol", "Dom 5, Rožna Dolina");
-        MyDatesActivity.Date newDate4 = new MyDatesActivity.Date("30.12.2022", "00h - 06h", "Jurij Sokol", "Dom 5, Rožna Dolina");
+        db.collection("dates")
+                .whereEqualTo("is tradable", true)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Map data = document.getData();
+                            DocumentReference owner = (DocumentReference) data.get("owner");
+                            if (owner == null) continue;
+                            owner.get().addOnSuccessListener(snapshot -> {
+                                Map ownerData = snapshot.getData();
+                                adapter.add(new MyDatesActivity.Date(
+                                        (String) data.get("date"),
+                                        (String) data.get("time"),
+                                        (String) ownerData.get("full_name"),
+                                        data.get("campus") + ", Dom " + data.get("dorm"))
+                                );
+                            });
+                        }
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                }
+                /*.addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Map data1 = document.getData();
+                            DocumentReference owner = (DocumentReference) data1.get("owner");
+                            owner.get().addOnSuccessListener(snapshot -> {
+                                Map ownerData = snapshot.getData();
+                                String ownerFullName = (String) ownerData.get("full_name");
 
-        adapter.add(newDate0);
-        adapter.add(newDate1);
-        adapter.add(newDate2);
-        adapter.add(newDate3);
-        adapter.add(newDate4);
+                                adapter.add(new MyDatesActivity.Date(
+                                        (String) data1.get("date"),
+                                        (String) data1.get("time"),
+                                        ownerFullName,
+                                        (String) data1.get("campus") + ", Dom " + (String) data1.get("dorm"))
+                                );
+                            });
+                        }
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                }*/);
 
         availableTradesList = findViewById(R.id.available_trades_list);
         availableTradesList.setAdapter(adapter);
