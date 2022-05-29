@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,15 +10,19 @@
 
   <include
       android:id="@+id/toolbar"
-      layout="@layout/toolbar"/>
+      layout="@layout/toolbar" />
 
   <LinearLayout
-      android:layout_width="match_parent"
+      android:id="@+id/linearLayout2"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:gravity="center"
       android:orientation="vertical"
-      android:layout_marginStart="60dp"
-      android:layout_marginTop="100dp"
-      android:gravity="center">
+      android:translationY="-200dp"
+      app:layout_constraintBottom_toBottomOf="@+id/include7"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="@+id/include7"
+      app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +36,7 @@
           android:layout_height="30dp"
           android:layout_marginStart="10dp"
           android:layout_marginEnd="20dp"
-          android:src="@drawable/availabledates_btn_icon" />
+          android:src="@drawable/icon_calendar" />
 
       <TextView
           android:id="@+id/text_date"
@@ -56,7 +60,7 @@
           android:layout_height="30dp"
           android:layout_marginStart="10dp"
           android:layout_marginEnd="20dp"
-          android:src="@drawable/icon_settings" />
+          android:src="@drawable/icon_awesome_clock" />
 
       <TextView
           android:id="@+id/text_time"
@@ -103,7 +107,7 @@
           android:layout_height="30dp"
           android:layout_marginStart="10dp"
           android:layout_marginEnd="20dp"
-          android:src="@android:drawable/ic_menu_mylocation" />
+          android:src="@drawable/icon_location" />
 
       <TextView
           android:id="@+id/text_house"
@@ -119,11 +123,17 @@
   <include
       android:id="@+id/btn_trade"
       layout="@layout/btn_dezurka"
-      android:layout_marginTop="30dp"
       android:layout_width="@dimen/dezurka_btn_width"
-      android:layout_height="@dimen/dezurka_btn_height" />
+      android:layout_height="@dimen/dezurka_btn_height"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.498"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+      app:layout_constraintVertical_bias="0.154" />
 
   <include
-      layout="@layout/hamburger_layout"/>
+      android:id="@+id/include7"
+      layout="@layout/hamburger_layout" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

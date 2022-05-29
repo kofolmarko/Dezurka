@@ -16,7 +16,7 @@
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/drawable/settings_btn.xml" value="0.4415" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_available_dates.xml" value="0.2" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_dashboard.xml" value="0.33" />
-        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_details.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_details.xml" value="0.22" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_main.xml" value="0.13134057971014493" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_my_dates.xml" value="0.22" />
@@ -29,6 +29,7 @@
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_settings_help_rules.xml" value="0.3223958333333333" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_settings_notifications.xml" value="0.25" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_settings_profile.xml" value="0.33" />
+        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_task_complete.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/activity_trades.xml" value="0.25" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/available_trade_item.xml" value="0.15678824721377912" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/btn_dashboard.xml" value="0.33" />
@@ -44,10 +45,11 @@
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/dashboard_btn.xml" value="0.5" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/dashboard_btn_group.xml" value="0.27219202898550726" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/dezurka_btn.xml" value="0.67" />
-        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/dezurka_confirm_popup.xml" value="0.25" />
-        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/dialog_confirm.xml" value="0.5614583333333333" />
+        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/dezurka_confirm_popup.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/dialog_confirm.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/dialog_filter.xml" value="0.5614583333333333" />
-        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/dialog_reserve_date.xml" value="0.5286458333333334" />
+        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/dialog_reserve.xml" value="0.15172101449275363" />
+        <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/dialog_reserve_date.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/dropdown_menu_item.xml" value="0.3223958333333333" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/fragment_first.xml" value="0.16847826086956522" />
         <entry key="..\:/Users/kofol/AndroidStudioProjects/Dezurka/app/src/main/res/layout/fragment_second.xml" value="0.16847826086956522" />
