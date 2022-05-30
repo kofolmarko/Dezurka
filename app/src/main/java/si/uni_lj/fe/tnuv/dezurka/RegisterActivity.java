@@ -91,12 +91,15 @@ public class RegisterActivity extends AppCompatActivity {
                         userData.put("room", "" + ((int) (Math.random()*900+1)));
                         userData.put("full_name", username);
                         userData.put("owned_dates", Arrays.asList());
+                        userData.put("offers", Arrays.asList());
 
 
                         db.collection("users")
-                                .add(userData)
-                                .addOnSuccessListener(documentReference -> Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId()))
+                                .document(mAuth.getCurrentUser().getUid())
+                                .set(userData)
+                                .addOnSuccessListener(null)
                                 .addOnFailureListener(e -> Log.w(TAG, "Error adding document", e));
+
 
                         user.updateProfile(profileUpdates)
                                 .addOnCompleteListener(task1 -> {
