@@ -38,11 +38,11 @@ public class AvailableDatesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_available_dates);
-
+/*
         reserveBtn1 = findViewById(R.id.reserve_btn_1);
         reserveBtn2 = findViewById(R.id.reserve_btn_2);
         reserveBtn3 = findViewById(R.id.reserve_btn_3);
-        reserveBtn4 = findViewById(R.id.reserve_btn_4);
+        reserveBtn4 = findViewById(R.id.reserve_btn_4);*/
         filter1 = findViewById(R.id.filter_1);
         filter2 = findViewById(R.id.filter_2);
         filter3 = findViewById(R.id.filter_3);
@@ -55,7 +55,7 @@ public class AvailableDatesActivity extends AppCompatActivity {
         setupToolbar(getResources().getString(R.string.available_dates_btn), this);
     }
 
-    private void setText() {
+    private void setText() {/*
         TextView text1 = reserveBtn1.findViewById(R.id.text);
         text1.setText(R.string.hours_filter_1);
         TextView text2 = reserveBtn2.findViewById(R.id.text);
@@ -63,10 +63,10 @@ public class AvailableDatesActivity extends AppCompatActivity {
         TextView text3 = reserveBtn3.findViewById(R.id.text);
         text3.setText(R.string.hours_filter_3);
         TextView text4 = reserveBtn4.findViewById(R.id.text);
-        text4.setText(R.string.hours_filter_4);
+        text4.setText(R.string.hours_filter_4);*/
     }
 
-    private void setOnclickListeners() {
+    private void setOnclickListeners() {/*
         reserveBtn1.setOnClickListener(view -> {
             openDialog();
             reserveBtn1.setEnabled(false);
@@ -83,7 +83,7 @@ public class AvailableDatesActivity extends AppCompatActivity {
         reserveBtn4.setOnClickListener(view -> {
             reserveBtn4.setEnabled(false);
             reserveBtn4.setAlpha(0.5f);
-        });
+        });*/
     }
 
     private void openDialog() {
