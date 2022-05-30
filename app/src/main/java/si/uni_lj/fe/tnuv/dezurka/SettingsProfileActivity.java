@@ -11,6 +11,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SettingsProfileActivity extends AppCompatActivity {
 
     ConstraintLayout logoutBtn;
@@ -41,7 +43,8 @@ public class SettingsProfileActivity extends AppCompatActivity {
 
     private void setOnClickListeners() {
         logoutBtn.setOnClickListener(view -> {
-            //logout code
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(this, SignInActivity.class));
         });
 
         myStudentBtn.setOnClickListener(view -> {

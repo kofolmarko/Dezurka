@@ -141,6 +141,7 @@ public class MyDatesActivity extends AppCompatActivity {
 
         currentUserData.get().addOnSuccessListener(documentSnapshot -> {
             Map data = documentSnapshot.getData();
+            if (data == null) return;
             ArrayList<DocumentReference> ownedDates = (ArrayList<DocumentReference>) data.get("owned_dates");
             for (DocumentReference ownedDate : ownedDates) {
                 ownedDate.get()
