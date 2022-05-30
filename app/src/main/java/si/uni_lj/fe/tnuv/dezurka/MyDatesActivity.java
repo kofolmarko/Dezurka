@@ -160,6 +160,7 @@ public class MyDatesActivity extends AppCompatActivity {
 
         //generateDatesScript();
     }
+
 void generateDatesScript() {
 
     for (int i = 0; i < 15; i++) {
