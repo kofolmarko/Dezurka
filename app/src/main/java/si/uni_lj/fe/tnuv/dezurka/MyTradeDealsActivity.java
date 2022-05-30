@@ -53,7 +53,7 @@ public class MyTradeDealsActivity extends AppCompatActivity {
         View v = inflater.inflate(R.layout.dialog_confirm, null);
 
         builder.setView(v)
-                .setTitle(Html.fromHtml("<font color='#FFFFFF'>Ste prepričani da želite objaviti ponudbo?</font>"));
+                .setTitle(Html.fromHtml("<font color='#FFFFFF'>Ste prepričani da želite sprejeti ponudbo?</font>"));
 
         AlertDialog dialog = builder.create();
         dialog.show();
@@ -61,7 +61,7 @@ public class MyTradeDealsActivity extends AppCompatActivity {
         MyDatesActivity.Date selectedDate = arrayOfTradeDeals.get(selectedIndex);
 
         tvDialog = v.findViewById(R.id.text_confirm);
-        tvDialog.setText("Menjava termina " + selectedDate.date);
+        tvDialog.setText("Menjava termina " + selectedDate.date + " za " + selectedDate.date);
 
         btnCancel = v.findViewById(R.id.btn_cancel);
         btnConfirm = v.findViewById(R.id.btn_confirm);
