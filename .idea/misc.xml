@@ -97,6 +97,9 @@
         <entry key="app/src/main/res/layout/dezurka_confirm_popup.xml" value="0.18115942028985507" />
         <entry key="app/src/main/res/layout/dialog_confirm.xml" value="0.18115942028985507" />
         <entry key="app/src/main/res/layout/dialog_filter.xml" value="0.18115942028985507" />
+        <entry key="app/src/main/res/layout/dialog_reserve.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/dialog_reserve_date.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/item_available_date.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/item_my_dates.xml" value="0.18115942028985507" />
         <entry key="app/src/main/res/layout/item_my_dates_for_trade.xml" value="0.18115942028985507" />
         <entry key="app/src/main/res/layout/item_my_trade_deals.xml" value="0.25" />

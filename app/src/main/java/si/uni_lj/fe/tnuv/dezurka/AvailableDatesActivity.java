@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -76,6 +77,10 @@ public class AvailableDatesActivity extends AppCompatActivity {
         availableDatesList = findViewById(R.id.available_dates_list);
         showDates();
 
+        availableDatesList.setOnItemClickListener(((adapterView, view, i, l) -> {
+            openDialog();
+        }));
+
         setText();
         setOnclickListeners();
 
@@ -117,7 +122,7 @@ public class AvailableDatesActivity extends AppCompatActivity {
     private void openDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
-        View v = inflater.inflate(R.layout.dialog_reserve, null);
+        View v = inflater.inflate(R.layout.dialog_reserve_date, null);
 
         builder.setView(v)
                 .setTitle(Html.fromHtml("<font color='#FFFFFF'>Rezervirali boste termin</font>"));
@@ -125,21 +130,29 @@ public class AvailableDatesActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
 
-        tvReserveDate = v.findViewById(R.id.reserve_date);
-        tvReserveTime = v.findViewById(R.id.reserve_time);
-        tvReserveHome = v.findViewById(R.id.reserve_home);
+        tvReserveDate = v.findViewById(R.id.current_date);
 
-        tvReserveDate.setText("Rezerviran datum");
-        tvReserveTime.setText("Rezerviran čas");
-        tvReserveHome.setText("Rezerviran dom");
+        tvReserveDate.setText("15.06.2022");
 
         cancelBtn = v.findViewById(R.id.trade_cancel);
-        confirmBtn = v.findViewById(R.id.trade_confirm);
+        //confirmBtn = v.findViewById(R.id.trade_confirm);
         tvCancel = cancelBtn.findViewById(R.id.text);
-        tvConfirm = confirmBtn.findViewById(R.id.text);
-
+        //tvConfirm = confirmBtn.findViewById(R.id.text);
         tvCancel.setText("Prekliči");
-        tvConfirm.setText("Potrdi");
+        //tvConfirm.setText("Potrdi");
+
+        ConstraintLayout btn00 = v.findViewById(R.id.reserve_btn_1);
+        ConstraintLayout btn06 = v.findViewById(R.id.reserve_btn_2);
+        ConstraintLayout btn12 = v.findViewById(R.id.reserve_btn_3);
+        ConstraintLayout btn18 = v.findViewById(R.id.reserve_btn_4);
+        TextView tv00 = btn00.findViewById(R.id.text);
+        TextView tv06 = btn06.findViewById(R.id.text);
+        TextView tv12 = btn12.findViewById(R.id.text);
+        TextView tv18 = btn18.findViewById(R.id.text);
+        tv00.setText("00h - 06h");
+        tv06.setText("06h - 12h");
+        tv12.setText("12h - 18h");
+        tv18.setText("18h - 24h");
 
         cancelBtn.setOnClickListener(view -> {
             dialog.cancel();
@@ -184,14 +197,14 @@ public class AvailableDatesActivity extends AppCompatActivity {
             MyDatesActivity.Date date = getItem(position);
 
             if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_my_dates, parent, false);
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_available_date, parent, false);
             }
 
-            TextView tvDate = convertView.findViewById(R.id.date);
-            TextView tvTime = convertView.findViewById(R.id.time);
+            TextView tvDate = convertView.findViewById(R.id.available_dates_date);
+            TextView tvCounter = convertView.findViewById(R.id.available_dates_counter);
 
             tvDate.setText(date.date);
-            tvTime.setText(date.time);
+            tvCounter.setText("3" + "/4");
 
             return convertView;
         }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="20dp"
+    android:textAlignment="center"
+    android:background="@color/dezurka_grey"
+    >
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@color/dezurka_grey"
+        android:src="@drawable/availabledates_btn_icon"
+        android:layout_marginEnd="10dp"/>
+
+    <TextView
+        android:id="@+id/available_dates_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:background="@color/dezurka_grey"/>
+
+    <TextView
+        android:id="@+id/available_dates_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginStart="30dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:background="@color/dezurka_grey"
+        android:gravity="end"/>
+
+</LinearLayout>
