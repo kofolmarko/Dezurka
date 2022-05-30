@@ -1,8 +1,10 @@
 package si.uni_lj.fe.tnuv.dezurka;
 
+import static android.content.ContentValues.TAG;
 import static si.uni_lj.fe.tnuv.dezurka.DezurkaToolbar.setupToolbar;
 import static si.uni_lj.fe.tnuv.dezurka.HamburgerMenu.setupHamburgerMenu;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -10,6 +12,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +21,13 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -142,24 +149,25 @@ public class AvailableDatesActivity extends AppCompatActivity {
     private void showDates() {
         AvailableDatesAdapter adapter = new AvailableDatesAdapter(this, arrayOfAvailableDates);
 
-        DocumentReference currentUserData = db.collection("users").document(mAuth.getCurrentUser().getUid());
-
-        currentUserData.get().addOnSuccessListener(documentSnapshot -> {
-            Map data = documentSnapshot.getData();
-            ArrayList<DocumentReference> ownedDates = (ArrayList<DocumentReference>) data.get("owned_dates");
-            for (DocumentReference ownedDate : ownedDates) {
-                ownedDate.get()
-                        .addOnSuccessListener(documentSnapshot1 -> {
-                            Map data1 = documentSnapshot1.getData();
-                            adapter.add(new MyDatesActivity.Date(
-                                    (String) data1.get("date"),
-                                    (String) data1.get("time"),
-                                    (String) data1.get("owner"),
-                                    (String) data1.get("campus") + ", Dom " + (String) data1.get("dorm"))
-                            );
-                        });
-            }
-        });
+        db.collection("dates")
+                .whereEqualTo("owner", null)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Map data = document.getData();
+                            if (data == null) return;
+                                adapter.add(new MyDatesActivity.Date(
+                                        (String) data.get("date"),
+                                        (String) data.get("time"),
+                                        (String) data.get("owner"),
+                                        (String) data.get("campus") + ", Dom " + (String) data.get("dorm"))
+                                );
+                        }
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                });
 
         availableDatesList.setAdapter(adapter);
 
