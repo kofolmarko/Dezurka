@@ -7,12 +7,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 public class AvailableDatesActivity extends AppCompatActivity {
 
@@ -34,6 +45,13 @@ public class AvailableDatesActivity extends AppCompatActivity {
     private TextView tvReserveTime;
     private TextView tvReserveHome;
 
+    private ListView availableDatesList;
+
+    ArrayList<MyDatesActivity.Date> arrayOfAvailableDates = new ArrayList<MyDatesActivity.Date>();
+
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +65,9 @@ public class AvailableDatesActivity extends AppCompatActivity {
         filter2 = findViewById(R.id.filter_2);
         filter3 = findViewById(R.id.filter_3);
         filter4 = findViewById(R.id.filter_4);
+
+        availableDatesList = findViewById(R.id.available_dates_list);
+        showDates();
 
         setText();
         setOnclickListeners();
@@ -114,8 +135,58 @@ public class AvailableDatesActivity extends AppCompatActivity {
         tvConfirm.setText("Potrdi");
 
         cancelBtn.setOnClickListener(view -> {
-           dialog.cancel();
+            dialog.cancel();
         });
+    }
+
+    private void showDates() {
+        AvailableDatesAdapter adapter = new AvailableDatesAdapter(this, arrayOfAvailableDates);
+
+        DocumentReference currentUserData = db.collection("users").document(mAuth.getCurrentUser().getUid());
+
+        currentUserData.get().addOnSuccessListener(documentSnapshot -> {
+            Map data = documentSnapshot.getData();
+            ArrayList<DocumentReference> ownedDates = (ArrayList<DocumentReference>) data.get("owned_dates");
+            for (DocumentReference ownedDate : ownedDates) {
+                ownedDate.get()
+                        .addOnSuccessListener(documentSnapshot1 -> {
+                            Map data1 = documentSnapshot1.getData();
+                            adapter.add(new MyDatesActivity.Date(
+                                    (String) data1.get("date"),
+                                    (String) data1.get("time"),
+                                    (String) data1.get("owner"),
+                                    (String) data1.get("campus") + ", Dom " + (String) data1.get("dorm"))
+                            );
+                        });
+            }
+        });
+
+        availableDatesList.setAdapter(adapter);
+
+        //generateDatesScript();
+    }
+
+    public static class AvailableDatesAdapter extends ArrayAdapter<MyDatesActivity.Date> {
+        public AvailableDatesAdapter(Context context, ArrayList<MyDatesActivity.Date> dates) {
+            super(context, 0, dates);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            MyDatesActivity.Date date = getItem(position);
+
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_my_dates, parent, false);
+            }
+
+            TextView tvDate = convertView.findViewById(R.id.date);
+            TextView tvTime = convertView.findViewById(R.id.time);
+
+            tvDate.setText(date.date);
+            tvTime.setText(date.time);
+
+            return convertView;
+        }
     }
 
 }
