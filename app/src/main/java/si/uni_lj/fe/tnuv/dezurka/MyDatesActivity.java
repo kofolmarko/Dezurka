@@ -16,9 +16,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,9 +36,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.ServerTimestamp;
 
 public class MyDatesActivity extends AppCompatActivity {
 
@@ -43,6 +48,7 @@ public class MyDatesActivity extends AppCompatActivity {
     private TextView tvAvailableTrades;
     private ConstraintLayout btnShowDeals;
     private TextView tvShowDeals;
+    public ProgressBar progressBar;
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -77,6 +83,7 @@ public class MyDatesActivity extends AppCompatActivity {
         setupToolbar(getResources().getString(R.string.my_dates_btn), this);
 
         myDatesList = findViewById(R.id.my_dates_list);
+        progressBar = findViewById(R.id.progress_bar);
 
         tvAvailableTrades = findViewById(R.id.available_trades_text);
         int numOfTrades = 2;
@@ -159,46 +166,44 @@ public class MyDatesActivity extends AppCompatActivity {
 
         myDatesList.setAdapter(adapter);
 
-        //generateDatesScript();
+        generateDatesScript();
     }
 
 void generateDatesScript() {
 
-    for (int i = 0; i < 15; i++) {
+        for (int i = 1; i < 30; i++) {
 
-        String d = i+10 + ". 6. 2022";
-        String t;
-        if(i%2 == 0) {
-            t = "18h - 24h";
-        } else {
-            t = "06h - 12h";
+            String d = i + ". 6. 2022";
+            String t[] = {
+                    "00h - 06h",
+                    "06h - 12h",
+                    "12h - 18h",
+                    "18h - 24h"
+            };
+
+                Map<String, Object> date = new HashMap<>();
+                date.put("date", d);
+                date.put("time", Arrays.asList(t));
+                date.put("dorm", "Dom 5");
+                date.put("campus", "Rožna Dolina");
+                date.put("owner", null);
+                date.put("is_tradable", false);
+                date.put("created_at", FieldValue.serverTimestamp());
+
+                db.collection("available_dates")
+                        .add(date)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error adding document", e);
+                            }
+                        });
+            }
         }
-
-        String dorm = i+1 + "";
-
-        Map<String, Object> date = new HashMap<>();
-        date.put("date", d);
-        date.put("time", t);
-        date.put("dorm", dorm);
-        date.put("campus", "Rožna Dolina");
-        date.put("owner", null);
-        date.put("is tradable", false);
-
-// Add a new document with a generated ID
-        db.collection("dates")
-                .add(date)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
-    }
-}
 }

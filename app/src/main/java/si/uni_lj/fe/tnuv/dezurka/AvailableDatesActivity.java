@@ -162,21 +162,28 @@ public class AvailableDatesActivity extends AppCompatActivity {
     private void showDates() {
         AvailableDatesAdapter adapter = new AvailableDatesAdapter(this, arrayOfAvailableDates);
 
-        db.collection("dates")
+        db.collection("available_dates")
                 .whereEqualTo("owner", null)
+                .orderBy("created_at")
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Map data = document.getData();
+                            ArrayList time = (ArrayList) data.get("time");
+
                             if (data == null) return;
                                 adapter.add(new MyDatesActivity.Date(
                                         (String) data.get("date"),
-                                        (String) data.get("time"),
+                                        "" + time.size(),
                                         (String) data.get("owner"),
                                         (String) data.get("campus") + ", Dom " + (String) data.get("dorm"))
                                 );
                         }
+
+                       // for (MyDatesActivity.Date date : dates) {
+
+                       // }
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());
                     }
@@ -204,7 +211,7 @@ public class AvailableDatesActivity extends AppCompatActivity {
             TextView tvCounter = convertView.findViewById(R.id.available_dates_counter);
 
             tvDate.setText(date.date);
-            tvCounter.setText("3" + "/4");
+            tvCounter.setText(date.time + "/4");
 
             return convertView;
         }
