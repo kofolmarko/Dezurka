@@ -154,19 +154,23 @@ public class MyDatesActivity extends AppCompatActivity {
                 ownedDate.get()
                         .addOnSuccessListener(documentSnapshot1 -> {
                             Map data1 = documentSnapshot1.getData();
-                            adapter.add(new MyDatesActivity.Date(
-                                    (String) data1.get("date"),
-                                    (String) data1.get("time"),
-                                    (String) data1.get("owner"),
-                                    (String) data1.get("campus") + ", Dom " + (String) data1.get("dorm"))
-                            );
+                            DocumentReference owner = (DocumentReference) data1.get("owner");
+                            owner.get().addOnSuccessListener(ownerDoc -> {
+                                Map ownerData = ownerDoc.getData();
+                                adapter.add(new MyDatesActivity.Date(
+                                        (String) data1.get("date"),
+                                        (String) data1.get("time"),
+                                        (String) ownerData.get("full_name"),
+                                        (String) data1.get("campus") + ", Dom " + (String) data1.get("dorm"))
+                                );
+                            });
                         });
             }
         });
 
         myDatesList.setAdapter(adapter);
 
-        generateDatesScript();
+        //generateDatesScript();
     }
 
 void generateDatesScript() {
@@ -186,7 +190,7 @@ void generateDatesScript() {
                 date.put("time", Arrays.asList(t));
                 date.put("dorm", "Dom 5");
                 date.put("campus", "Rožna Dolina");
-                date.put("owner", null);
+                date.put("ref", (DocumentReference) null);
                 date.put("is_tradable", false);
                 date.put("created_at", FieldValue.serverTimestamp());
 
@@ -196,6 +200,7 @@ void generateDatesScript() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
                                 Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                documentReference.update("ref", documentReference);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

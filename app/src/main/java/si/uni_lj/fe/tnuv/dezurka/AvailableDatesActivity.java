@@ -23,14 +23,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 public class AvailableDatesActivity extends AppCompatActivity {
@@ -55,10 +60,24 @@ public class AvailableDatesActivity extends AppCompatActivity {
 
     private ListView availableDatesList;
 
-    ArrayList<MyDatesActivity.Date> arrayOfAvailableDates = new ArrayList<MyDatesActivity.Date>();
+    ArrayList<AvailableDate> arrayOfAvailableDates = new ArrayList<>();
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    public static class AvailableDate {
+        public String date;
+        public ArrayList time;
+        public DocumentReference ref;
+        public String home;
+
+        public AvailableDate(String date, ArrayList time, DocumentReference ref, String home) {
+            this.date = date;
+            this.time = time;
+            this.ref = ref;
+            this.home = home;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +97,9 @@ public class AvailableDatesActivity extends AppCompatActivity {
         showDates();
 
         availableDatesList.setOnItemClickListener(((adapterView, view, i, l) -> {
-            openDialog();
+            adapterView.toString();
+            AvailableDate listItem = (AvailableDate) availableDatesList.getItemAtPosition(i);
+            openDialog(listItem);
         }));
 
         setText();
@@ -119,7 +140,7 @@ public class AvailableDatesActivity extends AppCompatActivity {
         });*/
     }
 
-    private void openDialog() {
+    private void openDialog(AvailableDate listItem) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
         View v = inflater.inflate(R.layout.dialog_reserve_date, null);
@@ -132,7 +153,7 @@ public class AvailableDatesActivity extends AppCompatActivity {
 
         tvReserveDate = v.findViewById(R.id.current_date);
 
-        tvReserveDate.setText("15.06.2022");
+        tvReserveDate.setText(listItem.date);
 
         cancelBtn = v.findViewById(R.id.trade_cancel);
         //confirmBtn = v.findViewById(R.id.trade_confirm);
@@ -154,16 +175,94 @@ public class AvailableDatesActivity extends AppCompatActivity {
         tv12.setText("12h - 18h");
         tv18.setText("18h - 24h");
 
+        if (listItem.time.contains("00h - 06h")) {
+            btn00.setOnClickListener(e -> {
+                removeTimeFromDb(listItem, "00h - 06h");
+                addDateToMyDates(listItem, "00h - 06h");
+                dialog.cancel();
+            });
+        } else {
+            btn00.setEnabled(false);
+            btn00.setAlpha(0.5f);
+        }
+        if (listItem.time.contains("06h - 12h")) {
+            btn06.setOnClickListener(e -> {
+                removeTimeFromDb(listItem, "06h - 12h");
+                addDateToMyDates(listItem, "06h - 12h");
+                dialog.cancel();
+            });
+        } else {
+            btn06.setEnabled(false);
+            btn06.setAlpha(0.5f);
+        }
+        if (listItem.time.contains("12h - 18h")) {
+            btn12.setOnClickListener(e -> {
+                removeTimeFromDb(listItem, "12h - 18h");
+                addDateToMyDates(listItem, "12h - 18h");
+                dialog.cancel();
+            });
+        } else {
+            btn12.setEnabled(false);
+            btn12.setAlpha(0.5f);
+        }
+        if (listItem.time.contains("18h - 24h")) {
+            btn18.setOnClickListener(e -> {
+                removeTimeFromDb(listItem, "18h - 24h");
+                addDateToMyDates(listItem, "18h - 24h");
+                dialog.cancel();
+            });
+        } else {
+            btn18.setEnabled(false);
+            btn18.setAlpha(0.5f);
+        }
+
         cancelBtn.setOnClickListener(view -> {
             dialog.cancel();
         });
+    }
+
+    private void addDateToMyDates(AvailableDate listItem, String time) {
+        Map<String, Object> date = new HashMap<>();
+        date.put("date", listItem.date);
+        date.put("time", time);
+        date.put("dorm", "Dom 5");
+        date.put("campus", "Rožna Dolina");
+        date.put("owner", db.document("/users/"+mAuth.getCurrentUser().getUid()));
+        date.put("is_tradable", false);
+        date.put("created_at", FieldValue.serverTimestamp());
+
+        db.collection("dates")
+                .add(date)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        DocumentReference currentUserData = db.collection("users").document(mAuth.getCurrentUser().getUid());
+                        currentUserData.get().addOnSuccessListener(snapshot -> {
+                            Map data = snapshot.getData();
+                            ArrayList<DocumentReference> ownedDates = (ArrayList<DocumentReference>) data.get("owned_dates");
+                            ownedDates.add(documentReference);
+                            currentUserData.update("owned_dates", ownedDates);
+                        });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
+    }
+
+    private void removeTimeFromDb(AvailableDate listItem, String time) {
+        listItem.time.remove(time);
+        listItem.ref.update("time", listItem.time);
+
     }
 
     private void showDates() {
         AvailableDatesAdapter adapter = new AvailableDatesAdapter(this, arrayOfAvailableDates);
 
         db.collection("available_dates")
-                .whereEqualTo("owner", null)
                 .orderBy("created_at")
                 .get()
                 .addOnCompleteListener(task -> {
@@ -173,10 +272,10 @@ public class AvailableDatesActivity extends AppCompatActivity {
                             ArrayList time = (ArrayList) data.get("time");
 
                             if (data == null) return;
-                                adapter.add(new MyDatesActivity.Date(
+                                adapter.add(new AvailableDate(
                                         (String) data.get("date"),
-                                        "" + time.size(),
-                                        (String) data.get("owner"),
+                                        (ArrayList) data.get("time"),
+                                        (DocumentReference) data.get("ref"),
                                         (String) data.get("campus") + ", Dom " + (String) data.get("dorm"))
                                 );
                         }
@@ -194,14 +293,14 @@ public class AvailableDatesActivity extends AppCompatActivity {
         //generateDatesScript();
     }
 
-    public static class AvailableDatesAdapter extends ArrayAdapter<MyDatesActivity.Date> {
-        public AvailableDatesAdapter(Context context, ArrayList<MyDatesActivity.Date> dates) {
+    public static class AvailableDatesAdapter extends ArrayAdapter<AvailableDate> {
+        public AvailableDatesAdapter(Context context, ArrayList<AvailableDate> dates) {
             super(context, 0, dates);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            MyDatesActivity.Date date = getItem(position);
+            AvailableDate date = getItem(position);
 
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_available_date, parent, false);
@@ -211,7 +310,7 @@ public class AvailableDatesActivity extends AppCompatActivity {
             TextView tvCounter = convertView.findViewById(R.id.available_dates_counter);
 
             tvDate.setText(date.date);
-            tvCounter.setText(date.time + "/4");
+            tvCounter.setText(date.time.size() + "/4");
 
             return convertView;
         }
