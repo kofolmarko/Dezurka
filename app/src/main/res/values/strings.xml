@@ -62,6 +62,8 @@
     <string name="uprava_address">Svetčeva ulica 9, 1000 Ljubljana</string>
     <string name="uprava_email">studentski.domovi@stud-dom-lj.si</string>
     <string name="uprava_webpage">https://www.stud-dom-lj.si</string>
+    <string name="trade_offer_success">Objava uspešna!</string>
+    <string name="trade_offer_success_2">Ob ponudbi boš prejel/a obvestilo!</string>
     <string-array name="languages">
         <item>Slovenščina</item>
         <item>English</item>

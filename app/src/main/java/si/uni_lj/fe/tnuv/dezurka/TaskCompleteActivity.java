@@ -1,7 +1,9 @@
 package si.uni_lj.fe.tnuv.dezurka;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,10 +12,15 @@ public class TaskCompleteActivity extends AppCompatActivity {
 
     private TextView firstText;
     private TextView secondText;
-    private Button firstBtn;
-    private Button secondBtn;
+    private ConstraintLayout firstBtn;
+    private ConstraintLayout secondBtn;
     private TextView firstBtnText;
     private TextView secondBtnText;
+
+    private String firstTextExtra;
+    private String secondTextExtra;
+    private String thirdTextExtra;
+    private String fourthTextExtra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +34,34 @@ public class TaskCompleteActivity extends AppCompatActivity {
         firstBtnText = firstBtn.findViewById(R.id.text);
         secondBtnText = secondBtn.findViewById(R.id.text);
 
+        Intent intent = getIntent();
+        firstTextExtra = intent.getStringExtra("first_text");
+        secondTextExtra = intent.getStringExtra("second_text");
+        thirdTextExtra = intent.getStringExtra("third_text");
+        fourthTextExtra = intent.getStringExtra("fourth_text");
+
         setText();
         setOnClickListeners();
     }
 
     private void setOnClickListeners() {
-        // set onclick listeners accordingly
+        firstBtn.setOnClickListener(view -> {
+            if (thirdTextExtra.equals("DOMOV")) {
+                startActivity(new Intent(this, DashboardActivity.class));
+            }
+        });
+
+        secondBtn.setOnClickListener(view -> {
+            if (fourthTextExtra.equals("TERMINI")) {
+                startActivity(new Intent(this, MyDatesActivity.class));
+            }
+        });
     }
 
     private void setText() {
-        // set text accordingly
+        firstText.setText(firstTextExtra);
+        secondText.setText(secondTextExtra);
+        firstBtnText.setText(thirdTextExtra);
+        secondBtnText.setText(fourthTextExtra);
     }
 }

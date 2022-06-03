@@ -149,7 +149,7 @@ public class AddTradeActivity extends AppCompatActivity {
 
     private void showMyTrades() {
         MyTradesAdapter adapter = new MyTradesAdapter(this, arrayOfMyTrades);
-
+/*
         MyDatesActivity.Date newDate0 = new MyDatesActivity.Date("21.12.2022", "12h - 18h", "Jurij Sokol", "Dom 5, Rožna Dolina");
         MyDatesActivity.Date newDate1 = new MyDatesActivity.Date("26.12.2022", "18h - 24h", "Jurij Sokol", "Dom 5, Rožna Dolina");
         MyDatesActivity.Date newDate2 = new MyDatesActivity.Date("29.12.2022", "00h - 06h", "Jurij Sokol", "Dom 5, Rožna Dolina");
@@ -158,7 +158,7 @@ public class AddTradeActivity extends AppCompatActivity {
         adapter.add(newDate1);
         adapter.add(newDate2);
         adapter.add(newDate3);
-
+*/
         myTradesList.setAdapter(adapter);
     }
 

@@ -20,11 +20,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
 
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 
 public class MyDateDetailsActivity extends AppCompatActivity {
 
-    ArrayList<MyDatesActivity.Date> arrayOfTrades = new ArrayList<MyDatesActivity.Date>();
+    private ConstraintLayout cancelBtn;
+    private ConstraintLayout confirmBtn;
+    private TextView tvCancel;
+    private TextView tvConfirm;
+    private TextView confirmDate;
+    private boolean isTradable;
+    private DocumentReference ref;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +44,8 @@ public class MyDateDetailsActivity extends AppCompatActivity {
         setupHamburgerMenu(this);
         setupToolbar(getResources().getString(R.string.my_dates_btn), this);
 
+        db = FirebaseFirestore.getInstance();
+
         TextView dateText = findViewById(R.id.text_date);
         TextView timeText = findViewById(R.id.text_time);
         TextView personText = findViewById(R.id.text_person);
@@ -42,6 +54,7 @@ public class MyDateDetailsActivity extends AppCompatActivity {
         TextView tradeBtnText = trade.findViewById(R.id.text);
 
         Intent intent = getIntent();
+        String refPath = intent.getStringExtra(MyDatesActivity.DATEREFERENCE);
         String date = intent.getStringExtra(MyDatesActivity.DETAILSDATE);
         String time = intent.getStringExtra(MyDatesActivity.DETAILSTIME);
         String person = intent.getStringExtra(MyDatesActivity.DETAILSPERSON);
@@ -51,74 +64,54 @@ public class MyDateDetailsActivity extends AppCompatActivity {
         timeText.setText(time);
         personText.setText(person);
         houseText.setText(home);
-        tradeBtnText.setText("Menjaj / oddaj");
+        ref = db.document(refPath);
 
-        trade.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DialogFragment tradeDialog = new TradeDialog();
-                tradeDialog.show(getSupportFragmentManager(), "Menjava termina");
+        ref.get().addOnSuccessListener(documentSnapshot -> {
+            isTradable = (boolean) documentSnapshot.get("is_tradable");
+            if(isTradable) {
+                tradeBtnText.setText("Odstrani objavo");
+            } else {
+                tradeBtnText.setText("Menjaj / oddaj");
             }
         });
+
+        trade.setOnClickListener(view -> openDialog(date, ref));
     }
 
-    public static class TradeDialog extends DialogFragment {
-        ArrayList<MyDatesActivity.Date> arrayOfTrades = new ArrayList<MyDatesActivity.Date>();
+    private void openDialog(String date, DocumentReference ref) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View v = inflater.inflate(R.layout.dialog_confirm, null);
 
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(v)
+                .setTitle(Html.fromHtml("<font color='#FFFFFF'>Ste prepričani, da želite menjati termin?</font>"));
 
-            TradeAdapter adapter = new TradeAdapter(getActivity(), arrayOfTrades);
-            MyDatesActivity.Date newDate4 = new MyDatesActivity.Date("26.12.2022", "12h - 18h", "Jurij Sokol", "Dom 10, Rožna Dolina");
-            MyDatesActivity.Date newDate5 = new MyDatesActivity.Date("26.12.2022", "12h - 18h", "Jurij Sokol", "Dom 5, Rožna Dolina");
-            MyDatesActivity.Date newDate6 = new MyDatesActivity.Date("26.12.2022", "12h - 18h", "Jurij Sokol", "Dom 7, Rožna Dolina");
-            MyDatesActivity.Date newDate7 = new MyDatesActivity.Date("26.12.2022", "12h - 18h", "Jurij Sokol", "Dom 7, Rožna Dolina");
+        cancelBtn = v.findViewById(R.id.btn_cancel);
+        confirmBtn = v.findViewById(R.id.btn_confirm);
+        confirmDate = v.findViewById(R.id.text_confirm);
+        tvCancel = cancelBtn.findViewById(R.id.text);
+        tvConfirm = confirmBtn.findViewById(R.id.text);
+        tvCancel.setText("Prekliči");
+        tvConfirm.setText("Potrdi");
+        confirmDate.setText(date);
 
-            adapter.add(newDate4);
-            adapter.add(newDate5);
-            adapter.add(newDate6);
-            adapter.add(newDate7);
+        AlertDialog dialog = builder.create();
+        dialog.show();
 
-            builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                        }
-                    })
-                    .setTitle(Html.fromHtml("<font color='#FFFFFF'>Objavi ponudbo za</font>"))
-                    .setNegativeButton("Prekliči", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                        }
-                    });
+        confirmBtn.setOnClickListener(view -> {
+            ref.update("is_tradable", !isTradable);
+            Intent taskComplete = new Intent(this, TaskCompleteActivity.class);
+            taskComplete.putExtra("first_text", getString(R.string.trade_offer_success));
+            taskComplete.putExtra("second_text", getString(R.string.trade_offer_success_2));
+            taskComplete.putExtra("third_text", "DOMOV");
+            taskComplete.putExtra("fourth_text", "TERMINI");
+            startActivity(taskComplete);
+            dialog.cancel();
+            this.finish();
+        });
 
-            return builder.create();
-        }
+        cancelBtn.setOnClickListener(view -> {
+            dialog.cancel();
+        });
     }
-
-    public static class TradeAdapter extends ArrayAdapter<MyDatesActivity.Date> {
-        public TradeAdapter(Context context, ArrayList<MyDatesActivity.Date> dates) {
-            super(context, 0, dates);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            MyDatesActivity.Date date = getItem(position);
-
-            if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_trade, parent, false);
-            }
-
-            TextView tvDate = convertView.findViewById(R.id.trade_date);
-            TextView tvTime = convertView.findViewById(R.id.trade_time);
-            TextView tvHome = convertView.findViewById(R.id.trade_home);
-
-            tvDate.setText(date.date);
-            tvTime.setText(date.time);
-            tvHome.setText(date.home);
-
-            return convertView;
-        }
-    }
-
 }

@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +56,7 @@ public class MyDatesActivity extends AppCompatActivity {
 
     ArrayList<Date> arrayOfDates = new ArrayList<Date>();
 
+    static String DATEREFERENCE = "ref";
     static String DETAILSDATE = "date";
     static String DETAILSTIME = "time";
     static String DETAILSPERSON = "person";
@@ -65,12 +67,14 @@ public class MyDatesActivity extends AppCompatActivity {
         public String time;
         public String person;
         public String home;
+        public DocumentReference ref;
 
-        public Date(String date, String time, String person, String home) {
+        public Date(String date, String time, String person, String home, DocumentReference ref) {
             this.date = date;
             this.time = time;
             this.person = person;
             this.home = home;
+            this.ref = ref;
         }
     }
 
@@ -104,6 +108,7 @@ public class MyDatesActivity extends AppCompatActivity {
             Date selectedDate = arrayOfDates.get(i);
 
             Intent detailsIntent = new Intent(this, MyDateDetailsActivity.class);
+            detailsIntent.putExtra(DATEREFERENCE, selectedDate.ref.getPath());
             detailsIntent.putExtra(DETAILSTIME, selectedDate.time);
             detailsIntent.putExtra(DETAILSDATE, selectedDate.date);
             detailsIntent.putExtra(DETAILSPERSON, selectedDate.person);
@@ -161,7 +166,8 @@ public class MyDatesActivity extends AppCompatActivity {
                                         (String) data1.get("date"),
                                         (String) data1.get("time"),
                                         (String) ownerData.get("full_name"),
-                                        (String) data1.get("campus") + ", Dom " + (String) data1.get("dorm"))
+                                        (String) data1.get("campus") + ", Dom " + (String) data1.get("dorm"),
+                                        (DocumentReference) ownedDate)
                                 );
                             });
                         });

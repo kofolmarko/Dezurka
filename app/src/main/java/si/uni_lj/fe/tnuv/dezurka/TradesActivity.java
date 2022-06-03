@@ -126,7 +126,7 @@ public class TradesActivity extends AppCompatActivity {
         TradesAdapter adapter = new TradesAdapter(this, arrayOfDates);
 
         db.collection("dates")
-                .whereEqualTo("is tradable", true)
+                .whereEqualTo("is_tradable", true)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -140,7 +140,8 @@ public class TradesActivity extends AppCompatActivity {
                                         (String) data.get("date"),
                                         (String) data.get("time"),
                                         (String) ownerData.get("full_name"),
-                                        data.get("campus") + ", Dom " + data.get("dorm"))
+                                        data.get("campus") + ", " + data.get("dorm"),
+                                        document.getReference())
                                 );
                             });
                         }
