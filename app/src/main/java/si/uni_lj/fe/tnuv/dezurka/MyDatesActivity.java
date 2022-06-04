@@ -96,6 +96,8 @@ public class MyDatesActivity extends AppCompatActivity {
         btnShowDeals = findViewById(R.id.btn_show_trade_deals);
         tvShowDeals = btnShowDeals.findViewById(R.id.text);
         tvShowDeals.setText("Prikaži ponudbe");
+        btnShowDeals.setEnabled(false);
+        btnShowDeals.setAlpha(0.5f);
 
         Intent intent = getIntent();
         String myNextDate = intent.getStringExtra(DashboardActivity.MYNEXTDATE);
@@ -155,25 +157,33 @@ public class MyDatesActivity extends AppCompatActivity {
             Map data = documentSnapshot.getData();
             if (data == null) return;
             ArrayList offers = (ArrayList) data.get("offers");
-            numOfTrades = "" + offers.size();
+            if (offers != null && offers.size() > 0) {
+                numOfTrades = "" + offers.size();
+                btnShowDeals.setEnabled(true);
+                btnShowDeals.setAlpha(1);
+            } else {
+                numOfTrades = "0";
+            }
             tvAvailableTrades.setText("Aktivnih ponudb za menjavo: " + numOfTrades);
             ArrayList<DocumentReference> ownedDates = (ArrayList<DocumentReference>) data.get("owned_dates");
-            for (DocumentReference ownedDate : ownedDates) {
-                ownedDate.get()
-                        .addOnSuccessListener(documentSnapshot1 -> {
-                            Map data1 = documentSnapshot1.getData();
-                            DocumentReference owner = (DocumentReference) data1.get("owner");
-                            owner.get().addOnSuccessListener(ownerDoc -> {
-                                Map ownerData = ownerDoc.getData();
-                                adapter.add(new MyDatesActivity.Date(
-                                        (String) data1.get("date"),
-                                        (String) data1.get("time"),
-                                        (String) ownerData.get("full_name"),
-                                        (String) data1.get("campus") + ", " + (String) data1.get("dorm"),
-                                        (DocumentReference) ownedDate)
-                                );
+            if (ownedDates != null) {
+                for (DocumentReference ownedDate : ownedDates) {
+                    ownedDate.get()
+                            .addOnSuccessListener(documentSnapshot1 -> {
+                                Map data1 = documentSnapshot1.getData();
+                                DocumentReference owner = (DocumentReference) data1.get("owner");
+                                owner.get().addOnSuccessListener(ownerDoc -> {
+                                    Map ownerData = ownerDoc.getData();
+                                    adapter.add(new MyDatesActivity.Date(
+                                            (String) data1.get("date"),
+                                            (String) data1.get("time"),
+                                            (String) ownerData.get("full_name"),
+                                            (String) data1.get("campus") + ", " + (String) data1.get("dorm"),
+                                            (DocumentReference) ownedDate)
+                                    );
+                                });
                             });
-                        });
+                }
             }
             progressBar.setVisibility(View.INVISIBLE);
         });

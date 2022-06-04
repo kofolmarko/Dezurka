@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import static si.uni_lj.fe.tnuv.dezurka.DezurkaToolbar.setupToolbar;
@@ -22,11 +24,14 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class MyTradeDealsActivity extends AppCompatActivity {
 
     private ListView tradeDealsList;
+
+    private ProgressBar progressBar;
 
     private ConstraintLayout btnCancel;
     private ConstraintLayout btnConfirm;
@@ -44,20 +49,28 @@ public class MyTradeDealsActivity extends AppCompatActivity {
         public String time;
         public String person;
         public String home;
+        public DocumentReference ref;
+        public DocumentReference owner;
         public String dateOffer;
         public String timeOffer;
         public String personOffer;
         public String homeOffer;
+        public DocumentReference refOffer;
+        public DocumentReference ownerOffer;
 
-        public DateTrade(String date, String time, String person, String home, String dateOffer, String timeOffer, String personOffer, String homeOffer) {
+        public DateTrade(String date, String time, String person, String home, DocumentReference ref, DocumentReference owner, String dateOffer, String timeOffer, String personOffer, String homeOffer, DocumentReference refOffer, DocumentReference ownerOffer) {
             this.date = date;
             this.time = time;
             this.person = person;
             this.home = home;
+            this.owner = owner;
+            this.ref = ref;
             this.dateOffer = dateOffer;
             this.timeOffer = timeOffer;
             this.personOffer = personOffer;
             this.homeOffer = homeOffer;
+            this.ownerOffer = ownerOffer;
+            this.refOffer = refOffer;
         }
     }
 
@@ -69,6 +82,7 @@ public class MyTradeDealsActivity extends AppCompatActivity {
         setupHamburgerMenu(this);
         setupToolbar("Aktivne ponudbe", this);
 
+        progressBar = findViewById(R.id.progress_bar);
         tradeDealsList = findViewById(R.id.available_trade_deals_list);
         showTradeDeals();
 
@@ -100,6 +114,45 @@ public class MyTradeDealsActivity extends AppCompatActivity {
         tvCancel.setText("Prekliči");
         tvConfirm.setText("Potrdi");
 
+        btnConfirm.setOnClickListener(view -> {
+            DocumentReference owner = selectedDate.owner;
+            DocumentReference ownerOffer = selectedDate.ownerOffer;
+            owner.get().addOnSuccessListener(ownerSnapshot -> {
+                ArrayList ownerOffers = (ArrayList) ownerSnapshot.get("offers");
+                Map ownerOfferMap = new HashMap();
+                ownerOfferMap.put("offered_date", selectedDate.refOffer);
+                ownerOfferMap.put("your_date", selectedDate.ref);
+                ownerOffers.remove(ownerOfferMap);
+                owner.update("offers", ownerOffers);
+                ArrayList ownerDates = (ArrayList) ownerSnapshot.get("owned_dates");
+                ownerDates.remove(selectedDate.ref);
+                ownerDates.add(selectedDate.refOffer);
+                owner.update("owned_dates", ownerDates);
+                selectedDate.ref.update("is_tradable", false);
+            });
+            ownerOffer.get().addOnSuccessListener(ownerOfferSnapshot -> {
+                ArrayList ownerOfferOffers = (ArrayList) ownerOfferSnapshot.get("offers");
+                Map ownerOfferOfferMap = new HashMap();
+                ownerOfferOfferMap.put("your_date", selectedDate.refOffer);
+                ownerOfferOfferMap.put("offered_date", selectedDate.ref);
+                ownerOfferOffers.remove(ownerOfferOfferMap);
+                ownerOffer.update("offers", ownerOfferOffers);
+                ArrayList ownerOfferDates = (ArrayList) ownerOfferSnapshot.get("owned_dates");
+                ownerOfferDates.remove(selectedDate.refOffer);
+                ownerOfferDates.add(selectedDate.ref);
+                ownerOffer.update("owned_dates", ownerOfferDates);
+                selectedDate.refOffer.update("is_tradable", false);
+            });
+
+            dialog.cancel();
+            Intent taskComplete = new Intent(this, TaskCompleteActivity.class);
+            taskComplete.putExtra("first_text", "Menjava uspešna");
+            taskComplete.putExtra("second_text", "Termin je sedaj tvoj.");
+            taskComplete.putExtra("third_text", "DOMOV");
+            taskComplete.putExtra("fourth_text", "TERMINI");
+            startActivity(taskComplete);
+        });
+
         btnCancel.setOnClickListener(view -> {
             dialog.cancel();
         });
@@ -119,21 +172,25 @@ public class MyTradeDealsActivity extends AppCompatActivity {
             }
 
             TextView tvDescription = convertView.findViewById(R.id.trade_deal_description);
-            tvDescription.setText(date.person + " ti ponuja termin");
+            tvDescription.setText("Sprejmi ponudbo");
 
-            TextView tvDate = convertView.findViewById(R.id.trade_deal_date);
-            TextView tvTime = convertView.findViewById(R.id.trade_deal_time);
-            TextView tvHome = convertView.findViewById(R.id.trade_deal_home);
+            TextView tvDate = convertView.findViewById(R.id.date_offer);
+            TextView tvTime = convertView.findViewById(R.id.time_offer);
+            TextView tvHome = convertView.findViewById(R.id.location_offer);
+            TextView tvOwner = convertView.findViewById(R.id.owner_offer);
             tvDate.setText(date.date);
             tvTime.setText(date.time);
             tvHome.setText(date.home);
+            tvOwner.setText(date.person);
 
-            TextView tvDateMy = convertView.findViewById(R.id.trade_deal_date_my);
-            TextView tvTimeMy = convertView.findViewById(R.id.trade_deal_time_my);
-            TextView tvHomeMy = convertView.findViewById(R.id.trade_deal_home_my);
+            TextView tvDateMy = convertView.findViewById(R.id.date);
+            TextView tvTimeMy = convertView.findViewById(R.id.time);
+            TextView tvHomeMy = convertView.findViewById(R.id.location);
+            TextView tvOwnerMy = convertView.findViewById(R.id.owner);
             tvDateMy.setText(date.dateOffer);
             tvTimeMy.setText(date.timeOffer);
             tvHomeMy.setText(date.homeOffer);
+            tvOwnerMy.setText(date.personOffer);
 
             return convertView;
         }
@@ -170,12 +227,17 @@ public class MyTradeDealsActivity extends AppCompatActivity {
                                                                         (String) yourDateMap.get("date"),
                                                                         (String) yourDateMap.get("time"),
                                                                         yourOwnerName,
-                                                                        (String) yourDateMap.get("campus") + ", Dom " + (String) yourDateMap.get("dorm"),
+                                                                        (String) yourDateMap.get("dorm") + ",\n" + (String) yourDateMap.get("campus"),
+                                                                        yourDate,
+                                                                        yourDateOwner,
                                                                         (String) offeredDateMap.get("date"),
                                                                         (String) offeredDateMap.get("time"),
                                                                         offeredOwnerName,
-                                                                        (String) offeredDateMap.get("campus") + ", Dom " + (String) offeredDateMap.get("dorm")
+                                                                        (String) offeredDateMap.get("dorm") + ",\n" + (String) offeredDateMap.get("campus"),
+                                                                        offeredDate,
+                                                                        offeredDateOwner
                                                                 ));
+                                                                progressBar.setVisibility(View.INVISIBLE);
                                                             });
                                                 });
                                     });

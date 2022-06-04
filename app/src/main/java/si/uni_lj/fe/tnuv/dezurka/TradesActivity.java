@@ -360,6 +360,7 @@ public class TradesActivity extends AppCompatActivity {
             Map data = documentSnapshot.getData();
             if (data == null) return;
             ArrayList<DocumentReference> ownedDates = (ArrayList<DocumentReference>) data.get("owned_dates");
+            if (ownedDates == null) return;
             for (DocumentReference ownedDate : ownedDates) {
                 ownedDate.get()
                         .addOnSuccessListener(documentSnapshot1 -> {

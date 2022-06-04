@@ -10,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -184,6 +185,7 @@ public class AvailableDatesActivity extends AppCompatActivity {
             btn00.setOnClickListener(e -> {
                 removeTimeFromDb(listItem, "00h - 06h");
                 addDateToMyDates(listItem, "00h - 06h");
+                taskComplete();
                 dialog.cancel();
             });
         } else {
@@ -194,6 +196,7 @@ public class AvailableDatesActivity extends AppCompatActivity {
             btn06.setOnClickListener(e -> {
                 removeTimeFromDb(listItem, "06h - 12h");
                 addDateToMyDates(listItem, "06h - 12h");
+                taskComplete();
                 dialog.cancel();
             });
         } else {
@@ -204,6 +207,7 @@ public class AvailableDatesActivity extends AppCompatActivity {
             btn12.setOnClickListener(e -> {
                 removeTimeFromDb(listItem, "12h - 18h");
                 addDateToMyDates(listItem, "12h - 18h");
+                taskComplete();
                 dialog.cancel();
             });
         } else {
@@ -214,6 +218,7 @@ public class AvailableDatesActivity extends AppCompatActivity {
             btn18.setOnClickListener(e -> {
                 removeTimeFromDb(listItem, "18h - 24h");
                 addDateToMyDates(listItem, "18h - 24h");
+                taskComplete();
                 dialog.cancel();
             });
         } else {
@@ -224,6 +229,16 @@ public class AvailableDatesActivity extends AppCompatActivity {
         cancelBtn.setOnClickListener(view -> {
             dialog.cancel();
         });
+    }
+
+    private void taskComplete() {
+        Intent taskComplete = new Intent(AvailableDatesActivity.this, TaskCompleteActivity.class);
+        taskComplete.putExtra("first_text", "Rezervacija uspešna");
+        taskComplete.putExtra("second_text", "Preostaneta ti še 2 rezervaciji.");
+        taskComplete.putExtra("third_text", "DOMOV");
+        taskComplete.putExtra("fourth_text", "TERMINI");
+        this.finish();
+        startActivity(taskComplete);
     }
 
     private void addDateToMyDates(AvailableDate listItem, String time) {
