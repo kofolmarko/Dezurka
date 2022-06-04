@@ -120,6 +120,8 @@ public class TradesActivity extends AppCompatActivity {
         //    startActivity(i);
         //});
 
+        //availableTradesList.setOnItemClickListener();
+
     }
 
     public static class TradesAdapter extends ArrayAdapter<Trade> {

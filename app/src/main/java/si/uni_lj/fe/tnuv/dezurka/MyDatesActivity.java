@@ -166,7 +166,7 @@ public class MyDatesActivity extends AppCompatActivity {
                                         (String) data1.get("date"),
                                         (String) data1.get("time"),
                                         (String) ownerData.get("full_name"),
-                                        (String) data1.get("campus") + ", Dom " + (String) data1.get("dorm"),
+                                        (String) data1.get("campus") + ", " + (String) data1.get("dorm"),
                                         (DocumentReference) ownedDate)
                                 );
                             });
