@@ -22,39 +22,39 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.16000003" />
-
-  <LinearLayout
-      android:id="@+id/btn_add_trade"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:orientation="horizontal"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="@+id/btn_filter"
-      app:layout_constraintHorizontal_bias="1.0"
-      app:layout_constraintStart_toStartOf="@+id/btn_filter"
-      app:layout_constraintTop_toBottomOf="@+id/btn_filter"
-      app:layout_constraintVertical_bias="0.01999998">
-
-    <!--
-    <TextView
-        android:id="@+id/textView4"
+  <!--
+    <LinearLayout
+        android:id="@+id/btn_add_trade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingEnd="10dp"
-        android:text="Dodaj ponudbo"
-        android:textColor="@color/dezurka_white"
-        android:textSize="24sp" />
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_filter"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_filter"
+        app:layout_constraintTop_toBottomOf="@+id/btn_filter"
+        app:layout_constraintVertical_bias="0.01999998">
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/hamburger_settings_icon" />
-    -->
+
+      <TextView
+          android:id="@+id/textView4"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:paddingEnd="10dp"
+          android:text="Dodaj ponudbo"
+          android:textColor="@color/dezurka_white"
+          android:textSize="24sp" />
+
+      <ImageView
+          android:layout_width="40dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          app:srcCompat="@drawable/hamburger_settings_icon" />
+
 
   </LinearLayout>
-
+-->
   <ListView
       android:id="@+id/available_trades_list"
       android:layout_width="match_parent"
@@ -65,7 +65,8 @@
       app:layout_constraintHorizontal_bias="1.0"
       app:layout_constraintStart_toStartOf="@+id/btn_filter"
       app:layout_constraintTop_toBottomOf="@+id/btn_filter"
-      app:layout_constraintVertical_bias="0.0" />
+      app:layout_constraintVertical_bias="0.0"
+      android:clickable="true"/>
 
   <include
       android:id="@+id/include3"

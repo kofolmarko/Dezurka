@@ -54,6 +54,8 @@ public class TaskCompleteActivity extends AppCompatActivity {
         secondBtn.setOnClickListener(view -> {
             if (fourthTextExtra.equals("TERMINI")) {
                 startActivity(new Intent(this, MyDatesActivity.class));
+            } else if (fourthTextExtra.equals("MENJAVE")) {
+                startActivity(new Intent(this, TradesActivity.class));
             }
         });
     }

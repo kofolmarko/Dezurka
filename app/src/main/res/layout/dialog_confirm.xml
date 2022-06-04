@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/dezurka_white"
+        android:fontFamily="@font/creatodisplay_regular"
         android:textSize="28dp"
         android:text=""
         android:padding="30dp"/>

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="20dp">
+    android:paddingBottom="20dp"
+    android:focusable="false"
+    android:focusableInTouchMode="false">
 
 
     <androidx.cardview.widget.CardView
@@ -39,15 +41,14 @@
                 android:background="@color/dezurka_grey"/>
 
             <ImageView
+                android:id="@+id/trade_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/trades_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@id/type"
-                app:layout_constraintTop_toTopOf="parent"
-                android:clickable="true"
-                android:focusable="true"/>
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <View
                 android:id="@+id/view3"

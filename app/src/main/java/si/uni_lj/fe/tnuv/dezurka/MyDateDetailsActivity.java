@@ -101,8 +101,15 @@ public class MyDateDetailsActivity extends AppCompatActivity {
         confirmBtn.setOnClickListener(view -> {
             ref.update("is_tradable", !isTradable);
             Intent taskComplete = new Intent(this, TaskCompleteActivity.class);
-            taskComplete.putExtra("first_text", getString(R.string.trade_offer_success));
-            taskComplete.putExtra("second_text", getString(R.string.trade_offer_success_2));
+
+            if (isTradable) {
+                taskComplete.putExtra("first_text", "Objava uspešno odstranjena");
+                taskComplete.putExtra("second_text", "Tvoj termin ni več na voljo za menjavo.");
+            } else {
+                taskComplete.putExtra("first_text", getString(R.string.trade_offer_success));
+                taskComplete.putExtra("second_text", getString(R.string.trade_offer_success_2));
+            }
+
             taskComplete.putExtra("third_text", "DOMOV");
             taskComplete.putExtra("fourth_text", "TERMINI");
             startActivity(taskComplete);
