@@ -51,6 +51,8 @@ public class MyDatesActivity extends AppCompatActivity {
     private TextView tvShowDeals;
     public ProgressBar progressBar;
 
+    private String numOfTrades;
+
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -90,8 +92,6 @@ public class MyDatesActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_bar);
 
         tvAvailableTrades = findViewById(R.id.available_trades_text);
-        int numOfTrades = 2;
-        tvAvailableTrades.setText("Aktivnih ponudb za menjavo: " + numOfTrades);
 
         btnShowDeals = findViewById(R.id.btn_show_trade_deals);
         tvShowDeals = btnShowDeals.findViewById(R.id.text);
@@ -154,6 +154,9 @@ public class MyDatesActivity extends AppCompatActivity {
         currentUserData.get().addOnSuccessListener(documentSnapshot -> {
             Map data = documentSnapshot.getData();
             if (data == null) return;
+            ArrayList offers = (ArrayList) data.get("offers");
+            numOfTrades = "" + offers.size();
+            tvAvailableTrades.setText("Aktivnih ponudb za menjavo: " + numOfTrades);
             ArrayList<DocumentReference> ownedDates = (ArrayList<DocumentReference>) data.get("owned_dates");
             for (DocumentReference ownedDate : ownedDates) {
                 ownedDate.get()
@@ -172,6 +175,7 @@ public class MyDatesActivity extends AppCompatActivity {
                             });
                         });
             }
+            progressBar.setVisibility(View.INVISIBLE);
         });
 
         myDatesList.setAdapter(adapter);

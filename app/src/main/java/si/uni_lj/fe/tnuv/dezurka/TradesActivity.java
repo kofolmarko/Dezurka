@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,6 +71,7 @@ public class TradesActivity extends AppCompatActivity {
 
     private Spinner groupSp;
     private Spinner homeSp;
+    private ProgressBar progressBar;
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -106,6 +108,7 @@ public class TradesActivity extends AppCompatActivity {
         filterBtn = findViewById(R.id.btn_filter);
         TextView filterText = filterBtn.findViewById(R.id.text);
         filterText.setText("FILTRIRAJ ISKANJE");
+        progressBar = findViewById(R.id.progress_bar);
 
         //addTradeBtn = findViewById(R.id.btn_add_trade);
 
@@ -181,6 +184,7 @@ public class TradesActivity extends AppCompatActivity {
                                 );
                             });
                         }
+                        progressBar.setVisibility(View.INVISIBLE);
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());
                     }

@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -58,6 +59,8 @@ public class AvailableDatesActivity extends AppCompatActivity {
     private TextView tvReserveTime;
     private TextView tvReserveHome;
 
+    private ProgressBar progressBar;
+
     private ListView availableDatesList;
 
     ArrayList<AvailableDate> arrayOfAvailableDates = new ArrayList<>();
@@ -83,7 +86,9 @@ public class AvailableDatesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_available_dates);
-/*
+
+        progressBar = findViewById(R.id.progress_bar);
+        /*
         reserveBtn1 = findViewById(R.id.reserve_btn_1);
         reserveBtn2 = findViewById(R.id.reserve_btn_2);
         reserveBtn3 = findViewById(R.id.reserve_btn_3);
@@ -283,6 +288,7 @@ public class AvailableDatesActivity extends AppCompatActivity {
                        // for (MyDatesActivity.Date date : dates) {
 
                        // }
+                        progressBar.setVisibility(View.INVISIBLE);
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());
                     }
