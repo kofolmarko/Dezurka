@@ -84,4 +84,18 @@
         <item>Gerba</item>
     </string-array>
 
+    <string name="q1">Kolikšna je urna postavka?</string>
+    <string name="q2">Ali lahko dežuram v vseh domovih?</string>
+    <string name="q3">Ali lahko spim med dežuranjem?</string>
+    <string name="q4">Kako uprava ve, da opravljam svoje delo?</string>
+    <string name="q5">Ali je pomembno kateri študentski servis uporabljam?</string>
+    <string name="q6">Kaj se zgodi če pozabim priti nas svoj terin?</string>
+
+    <string name="a1">Bruto: 5,87€ Neto: 4,98€.</string>
+    <string name="a2">Dežuraš lahko v vseh domovih lastnega naselja, vendar imaš pravico do rezervacije terminov le v lastnem domu.</string>
+    <string name="a3">Spanje med dežuranjem bo kaznovano s prepovedjo nadaljnea opravljanja dela.</string>
+    <string name="a4">2-3 krat na termin boste prejeli klic iz uprave, ki preverja vašo prisotnost. Prav tako vaše pravilno opravljanje službe dežurnega preveri varnostnih.</string>
+    <string name="a5">Ni pomembno. Za prejem zaslužka je potrebno izdati napotnico pred začetkom novega delovnega mesca.</string>
+    <string name="a6">Če je dežurna loža prazna, se bo odprla izredna rezervacija, katero prevzame najhitrejši. V tem primeru ne prejmete plačila in plačilo prejme prevzemnik.</string>
+
 </resources>
