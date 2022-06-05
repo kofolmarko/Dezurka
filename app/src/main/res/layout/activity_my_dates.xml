@@ -10,17 +10,14 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
 
-    <include
-        android:id="@+id/include2"
-        layout="@layout/hamburger_layout" />
-
     <TextView
         android:id="@+id/my_dates_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="25dp"
+        android:fontFamily="@font/creatodisplay_light"
         app:layout_constraintBottom_toBottomOf="@+id/include2"
         app:layout_constraintEnd_toEndOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="@+id/toolbar"
@@ -62,7 +59,8 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="25dp"
+        android:fontFamily="@font/creatodisplay_light"
         app:layout_constraintBottom_toBottomOf="@+id/include2"
         app:layout_constraintEnd_toEndOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="@+id/toolbar"
@@ -79,5 +77,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_dates_list"
         app:layout_constraintVertical_bias="0.3" />
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/hamburger_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

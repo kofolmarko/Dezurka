@@ -24,6 +24,15 @@
 
     </ListView>
 
+    <ProgressBar
+        android:id="@+id/progress_bar_my_dates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateDrawable="@drawable/progress_bg"
+        android:progress="0"
+        android:visibility="visible" />
+
     <include
         android:id="@+id/btn_cancel"
         layout="@layout/btn_dezurka"
