@@ -6,37 +6,42 @@ import static si.uni_lj.fe.tnuv.dezurka.HamburgerMenu.setupHamburgerMenu;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.style.SuperscriptSpan;
-import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.widget.Button;
-import android.graphics.BlendMode;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
 import java.lang.reflect.Array;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class DashboardActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     private ConstraintLayout myDatesBtn;
     private ConstraintLayout availableDatesBtn;
     private ConstraintLayout tradesBtn;
+
+    private AtomicInteger numOfTrades;
+    private int myDates;
 
     public static final String MYNEXTDATE = "date";
 
@@ -46,17 +51,23 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        numOfTrades = new AtomicInteger();
+        setNumberOfTrades();
+
         myDatesBtn = findViewById(R.id.my_dates_btn);
         availableDatesBtn = findViewById(R.id.available_dates_btn);
         tradesBtn = findViewById(R.id.trades_btn);
 
-        setButtonText();
         setOnClickListeners();
         setIcons();
         setupHamburgerMenu(this);
         setupToolbar("", this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void setOnClickListeners() {
         myDatesBtn.setOnClickListener(view -> {
             Intent i = new Intent(DashboardActivity.this, MyDatesActivity.class);
@@ -90,6 +101,7 @@ public class DashboardActivity extends AppCompatActivity {
         // Code to apply OVERLAY blend mode
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void setButtonText() {
         String[] myDatesText = generateMyDatesText();
         String[] availableDatesText = generateAvailableDatesText();
@@ -104,42 +116,67 @@ public class DashboardActivity extends AppCompatActivity {
         String[] res = new String[3];
         res[0] = getResources().getString(R.string.trades_btn);
         res[1] = getResources().getString(R.string.trades_text2);
-        res[2] = getNumberOfTrades() + getResources().getString(R.string.trades_text3);
+        res[2] = numOfTrades + getResources().getString(R.string.trades_text3);
 
         return res;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private String[] generateAvailableDatesText() {
         String[] res = new String[3];
         res[0] = (getResources().getString(R.string.available_dates_btn));
         res[1] = getResources().getString(R.string.available_dates_text2_p1) +
                 getMyNextDate() +
                 getResources().getString(R.string.available_dates_text2_p2);
-        res[2] = getMyNextDate().toString();
+        res[2] = getMyNextDateDate().toString();
 
         return res;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private String[] generateMyDatesText() {
         String[] res = new String[3];
         res[0] = (getResources().getString(R.string.my_dates_btn));
-        res[1] = getResources().getString(R.string.my_dates_text2_p1) +
-                    getMyNextDate() +
-                    getResources().getString(R.string.my_dates_text2_p2);
-        res[2] = getMyNextDate().toString();
+        res[1] = "Ogled rezerviranih terminov";
+        res[2] = "Število terminov: " + myDates;
 
         return res;
     }
 
-    private String getNumberOfTrades() {
-        return "25";
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void setNumberOfTrades() {
+        db.collection("dates").get().addOnSuccessListener(queryDocumentSnapshots -> {
+            for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+                if ((boolean) queryDocumentSnapshot.get("is_tradable")) {
+                    numOfTrades.getAndIncrement();
+                }
+            }
+            DocumentReference currentUserData = db.collection("users").document(mAuth.getCurrentUser().getUid());
+            currentUserData.get().addOnSuccessListener(documentSnapshot -> {
+                ArrayList myDatesList = (ArrayList) documentSnapshot.get("owned_dates");
+                myDates = myDatesList.size();
+                setButtonText();
+            });
+        });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private String getMyNextDate() {
         // Adjust to calculate remaining days, create methods for other required dates
-        Date date = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("dd");
-        String res = format.format(date);
+        int lastDayOfMonth = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd");
+        int currentDate = Integer.parseInt(formatter.format(date));
+        String res = "" + (lastDayOfMonth - currentDate);
+        return res;
+    }
+
+    private String getMyNextDateDate() {
+        Calendar calendar = Calendar.getInstance();
+        int date = calendar.getActualMaximum(Calendar.DATE);
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.SHORT_FORMAT);
+        String res = date + ". " + month + ". " + year;
         return res;
     }
 

@@ -198,7 +198,6 @@ public class MyDatesActivity extends AppCompatActivity {
         });
 
         myDatesList.setAdapter(adapter);
-
         //generateDatesScript();
     }
 
