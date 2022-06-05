@@ -158,6 +158,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+>>>>>>> 9cb8093a0c8145abec19b906ad4a38b79ffa5698
 
     <ListView
         android:id="@+id/available_dates_list"

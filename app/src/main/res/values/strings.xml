@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">Dezurka</string>
-    <string name="login_btn">Login</string>
-    <string name="username_hint">Username</string>
-    <string name="password_hint">Password</string>
-    <string name="email_hint">E-mail</string>
-    <string name="register_btn">Register</string>
-    <string name="register_successful_msg">Register successful, login with your credentials.</string>
-    <string name="signIn_successful_msg">\"Welcome back, \"</string>
-    <string name="confirm_password_hint">Confirm password</string>
-    <string name="register_title">Create account</string>
-    <string name="passwords_do_not_match_msg">Passwords do not match</string>
+    <string name="login_btn">Prijava</string>
+    <string name="username_hint">Uporabniško ime</string>
+    <string name="password_hint">Geslo</string>
+    <string name="email_hint">E-pošta</string>
+    <string name="register_btn">Registracija</string>
+    <string name="register_successful_msg">Registracija uspešna, prijavite se s svojimi podatki.</string>
+    <string name="signIn_successful_msg">\"Dobrodošli nazaj, \"</string>
+    <string name="confirm_password_hint">Potrdi geslo</string>
+    <string name="register_title">Ustvari račun</string>
+    <string name="passwords_do_not_match_msg">Gesla se ne ujemata</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
 
     <!-- Strings used for fragments for navigation -->
