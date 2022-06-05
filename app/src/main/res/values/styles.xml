@@ -1,6 +1,11 @@
 <resources>
 
-    <style name="Widget.Theme.Dezurka.MyView" parent="">
-        <item name="android:background">@color/gray_400</item>
+    <style name="Widget.Theme.Dezurka.MyView" parent="Theme.Dezurka">
+        <item name="android:background">@drawable/dashboard_btn</item>
+        <item name="fontFamily">@font/creatodisplay_regular</item>
+    </style>
+
+    <style name="hamburgerMenuOverlay" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/hamburger_menu_background</item>
     </style>
 </resources>

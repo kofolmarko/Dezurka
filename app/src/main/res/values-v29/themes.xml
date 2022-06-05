@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Theme.Dezurka" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/dezurka_red</item>
@@ -14,12 +15,6 @@
         <!-- Customize your theme here. -->
         <item name="android:background">@color/dezurka_blue</item>
         <item name="android:fontFamily">@font/creatodisplay_regular</item>
-        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item name="android:forceDarkAllowed">false</item>
     </style>
-    <style name="Theme.Dezurka.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-    <style name="Theme.Dezurka.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="Theme.Dezurka.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
