@@ -1,11 +1,13 @@
 package si.uni_lj.fe.tnuv.dezurka;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -15,8 +17,10 @@ public class SignInActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
-    private Button registerBtn;
-    private Button loginBtn;
+    private ConstraintLayout registerBtn;
+    private ConstraintLayout loginBtn;
+    private TextView registerTv;
+    private TextView loginTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,11 @@ public class SignInActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         registerBtn = findViewById(R.id.register_btn);
         loginBtn = findViewById(R.id.login_btn);
+
+        registerTv = registerBtn.findViewById(R.id.text);
+        loginTv = loginBtn.findViewById(R.id.text);
+        registerTv.setText("Registracija");
+        loginTv.setText("Prijava");
     }
 
     @Override
