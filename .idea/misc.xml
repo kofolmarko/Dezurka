@@ -94,13 +94,17 @@
         <entry key="..\:/Users/uporabnik/AndroidStudioProjects/Dezurka/app/src/main/res/layout/trade_item.xml" value="0.24365942028985507" />
         <entry key="app/src/main/res/drawable/custom_checkbox.xml" value="0.2175" />
         <entry key="app/src/main/res/layout/activity_add_trade.xml" value="0.2006340579710145" />
-        <entry key="app/src/main/res/layout/activity_available_dates.xml" value="0.18115942028985507" />
+        <entry key="app/src/main/res/layout/activity_available_dates.xml" value="0.47799627331719885" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.18115942028985507" />
         <entry key="app/src/main/res/layout/activity_details.xml" value="0.18115942028985507" />
         <entry key="app/src/main/res/layout/activity_my_dates.xml" value="0.18115942028985507" />
         <entry key="app/src/main/res/layout/activity_my_trade_deals.xml" value="0.18115942028985507" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.2980072463768116" />
         <entry key="app/src/main/res/layout/activity_settings_general.xml" value="0.2980072463768116" />
+        <entry key="app/src/main/res/layout/activity_settings_help_contact.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/activity_settings_help_qa.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/activity_settings_notifications.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/activity_task_complete.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/activity_trades.xml" value="0.18115942028985507" />
         <entry key="app/src/main/res/layout/available_trade_item.xml" value="0.18115942028985507" />
         <entry key="app/src/main/res/layout/btn_dezurka.xml" value="0.18115942028985507" />
