@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -140,9 +141,17 @@ public class MyDatesActivity extends AppCompatActivity {
 
             TextView tvDate = convertView.findViewById(R.id.date);
             TextView tvTime = convertView.findViewById(R.id.time);
+            ImageView isTradable = convertView.findViewById(R.id.is_tradable);
 
             tvDate.setText(date.date);
             tvTime.setText(date.time);
+
+            date.ref.get().addOnSuccessListener(documentSnapshot -> {
+               boolean isTradableB = (boolean) documentSnapshot.get("is_tradable");
+               if (isTradableB) {
+                   isTradable.setVisibility(View.VISIBLE);
+               }
+            });
 
             return convertView;
         }
