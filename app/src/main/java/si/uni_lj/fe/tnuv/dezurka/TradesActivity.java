@@ -229,7 +229,8 @@ public class TradesActivity extends AppCompatActivity {
         dialog.show();
 
         myDatesList = v.findViewById(R.id.my_dates_list);
-        showDates();
+        ProgressBar progressBarMyDates = v.findViewById(R.id.progress_bar_my_dates);
+        showDates(progressBarMyDates);
         myDatesList.setOnItemClickListener(((adapterView, view, i, l) -> {
             MyDatesActivity.Date selectedDate = arrayOfMyDates.get(i);
             openConfirmDialog(selectedDate.date, selectedDate.ref);
@@ -244,7 +245,6 @@ public class TradesActivity extends AppCompatActivity {
                 trade.owner.update("offers", offers);
             });
         }));
-
         cancelOfferBtn = v.findViewById(R.id.btn_cancel);
         TextView btnCancelText = cancelOfferBtn.findViewById(R.id.text);
         btnCancelText.setText("Prekliči");
@@ -346,11 +346,12 @@ public class TradesActivity extends AppCompatActivity {
         });
     }
 
-    private void showDates() {
+    private void showDates(ProgressBar pb) {
         MyDatesActivity.DatesAdapter adapter = new MyDatesActivity.DatesAdapter(this, arrayOfMyDates);
 
         if (arrayOfMyDates.size() > 0) {
             myDatesList.setAdapter(adapter);
+            pb.setVisibility(View.GONE);
             return;
         }
 
@@ -378,6 +379,7 @@ public class TradesActivity extends AppCompatActivity {
                             });
                         });
             }
+            pb.setVisibility(View.GONE);
         });
 
         myDatesList.setAdapter(adapter);

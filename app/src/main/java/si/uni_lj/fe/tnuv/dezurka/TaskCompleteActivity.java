@@ -49,6 +49,7 @@ public class TaskCompleteActivity extends AppCompatActivity {
             if (thirdTextExtra.equals("DOMOV")) {
                 startActivity(new Intent(this, DashboardActivity.class));
             }
+            this.finish();
         });
 
         secondBtn.setOnClickListener(view -> {
@@ -57,6 +58,7 @@ public class TaskCompleteActivity extends AppCompatActivity {
             } else if (fourthTextExtra.equals("MENJAVE")) {
                 startActivity(new Intent(this, TradesActivity.class));
             }
+            this.finish();
         });
     }
 
