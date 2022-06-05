@@ -32,7 +32,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/name_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/creatodisplay_regular"
@@ -77,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/creatodisplay_light"
-                android:text="Dom -, Soba -"
+                android:text="Lokacija"
                 android:textColor="@color/dezurka_white"
                 android:textSize="25dp"
                 app:layout_constraintBottom_toBottomOf="parent"
