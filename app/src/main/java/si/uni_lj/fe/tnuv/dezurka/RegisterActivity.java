@@ -97,6 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
                         userData.put("full_name", username);
                         userData.put("owned_dates", Arrays.asList());
                         userData.put("offers", Arrays.asList());
+                        userData.put("available_dates", 10);
 
 
                         db.collection("users")

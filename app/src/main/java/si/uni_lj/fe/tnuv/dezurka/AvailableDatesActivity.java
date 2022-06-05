@@ -59,6 +59,9 @@ public class AvailableDatesActivity extends AppCompatActivity {
     private TextView tvReserveDate;
     private TextView tvReserveTime;
     private TextView tvReserveHome;
+    private TextView tvAvailableDates;
+
+    private Long availableDatesNum;
 
     private ProgressBar progressBar;
 
@@ -98,15 +101,25 @@ public class AvailableDatesActivity extends AppCompatActivity {
         filter2 = findViewById(R.id.filter_2);
         filter3 = findViewById(R.id.filter_3);
         filter4 = findViewById(R.id.filter_4);
+        tvAvailableDates = findViewById(R.id.available_dates_count);
 
         availableDatesList = findViewById(R.id.available_dates_list);
-        showDates();
+        DocumentReference currentUserData = db.collection("users").document(mAuth.getCurrentUser().getUid());
+        currentUserData.get().addOnSuccessListener(snapshot -> {
+            Map data = snapshot.getData();
+            availableDatesNum = (Long) data.get("available_dates");
 
-        availableDatesList.setOnItemClickListener(((adapterView, view, i, l) -> {
-            adapterView.toString();
-            AvailableDate listItem = (AvailableDate) availableDatesList.getItemAtPosition(i);
-            openDialog(listItem);
-        }));
+            tvAvailableDates.setText(availableDatesNum.toString());
+            showDates();
+
+            if (availableDatesNum > 0) {
+                availableDatesList.setOnItemClickListener(((adapterView, view, i, l) -> {
+                    adapterView.toString();
+                    AvailableDate listItem = (AvailableDate) availableDatesList.getItemAtPosition(i);
+                    openDialog(listItem);
+                }));
+            }
+        });
 
         setText();
         setOnclickListeners();
@@ -232,9 +245,12 @@ public class AvailableDatesActivity extends AppCompatActivity {
     }
 
     private void taskComplete() {
+        DocumentReference currentUserData = db.collection("users").document(mAuth.getCurrentUser().getUid());
+        currentUserData.update("available_dates", availableDatesNum - 1);
+
         Intent taskComplete = new Intent(AvailableDatesActivity.this, TaskCompleteActivity.class);
         taskComplete.putExtra("first_text", "Rezervacija uspešna");
-        taskComplete.putExtra("second_text", "Preostaneta ti še 2 rezervaciji.");
+        taskComplete.putExtra("second_text", "Število preostalih rezervacij: " + (availableDatesNum - 1));
         taskComplete.putExtra("third_text", "DOMOV");
         taskComplete.putExtra("fourth_text", "TERMINI");
         this.finish();
